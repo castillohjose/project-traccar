@@ -1,9 +1,5 @@
-assets/
 data/
 docker.sock/
 traccar-data/
 traccar-logs/
 .env
-openapi.yaml
-simulation.js
-traccar.xml

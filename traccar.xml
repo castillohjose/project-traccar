@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 <properties>
-
+    <!-- Carga la configuración base obligatoria del contenedor -->
     <entry key='config.default'>./conf/default.xml</entry>
+    
+    <!-- Enciende la creación automática de dispositivos -->
+    <entry key='database.registerUnknown'>true</entry>
 
-    <!-- Conexión a TimescaleDB -->
-    <entry key='database.driver'>org.postgresql.Driver</entry>
-    <entry key='database.url'>jdbc:postgresql://database:5432/traccar</entry>
-    <entry key='database.user'>traccar</entry>
-    <entry key='database.password'>traccar</entry>
-
+    <!-- Asigna los dispositivos nuevos automáticamente al Grupo 1 -->
+    <entry key='database.registerUnknown.defaultGroupId'>1</entry>
 </properties>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despachos - GreenPack/Maxiplast</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 400px; 
+            margin: auto; 
+            background-color: #f4f4f9;
+        }
+        h2 { text-align: center; color: #333; }
+        label { font-weight: bold; margin-top: 10px; display: block; color: #555; }
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            margin-top: 5px; 
+            margin-bottom: 15px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-sizing: border-box;
+        }
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 10px; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px; 
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #btnIniciar { background-color: #28a745; }
+        #btnFinalizar { background-color: #dc3545; }
+        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        .status { text-align: center; font-size: 14px; color: #666; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>Control de Ruta</h2>
+    
+    <label for="nombreVendedor">ID del Vendedor:</label>
+    <input type="text" id="nombreVendedor" placeholder="Ej: 1228" required>
+
+    <label for="nombreCliente">Nombre del Cliente (Opcional):</label>
+    <input type="text" id="nombreCliente" placeholder="Ej: Distribuidora Centro">
+
+    <button id="btnIniciar" onclick="iniciarRuta()">Guiar Cliente (Iniciar)</button>
+    <button id="btnFinalizar" onclick="finalizarYSincronizar()" disabled>Finalizar y Enviar</button>
+
+    <div id="estadoPuntos" class="status">Puntos capturados: 0</div>
+
+    <script>
+        let rastreadorId = null;
+        let historialRuta = [];
+        let ultimoTiempoGuardado = 0; // NUEVO: Reloj interno
+        
+        // ⚙️ CONFIGURACIÓN MAESTRA DE TIEMPO
+        // Para tus pruebas pon 15. Cuando el supervisor lo pida, cámbialo a 900 (15 minutos x 60 segundos)
+        const INTERVALO_SEGUNDOS = 5; 
+
+        // 1. INICIAR LA RUTA
+        function iniciarRuta() {
+            const idVendedor = document.getElementById('nombreVendedor').value;
+            if (!idVendedor) {
+                alert("Por favor, ingresa tu ID de vendedor antes de iniciar.");
+                return;
+            }
+
+            if (!navigator.geolocation) {
+                alert("El navegador de este teléfono no soporta GPS.");
+                return;
+            }
+
+            // Cambiar el estado visual de los botones
+            document.getElementById('btnIniciar').disabled = true;
+            document.getElementById('btnFinalizar').disabled = false;
+            document.getElementById('nombreVendedor').disabled = true;
+            document.getElementById('nombreCliente').disabled = true; // Bloqueamos el cliente también
+            
+            historialRuta = [];
+            ultimoTiempoGuardado = 0; // Reiniciamos el reloj al iniciar el viaje
+            actualizarContador();
+
+            // Empezar a capturar coordenadas en tiempo real
+            rastreadorId = navigator.geolocation.watchPosition(
+                (posicion) => {
+                    const ahora = Date.now();
+                    const milisegundosRequeridos = INTERVALO_SEGUNDOS * 1000;
+
+                    // NUEVO: Solo guardamos el punto si ya pasó el tiempo configurado
+                    if (ahora - ultimoTiempoGuardado >= milisegundosRequeridos) {
+                        const punto = {
+                            lat: posicion.coords.latitude,
+                            lon: posicion.coords.longitude,
+                            tiempo: new Date().toISOString()
+                        };
+                        historialRuta.push(punto);
+                        ultimoTiempoGuardado = ahora; // Actualizamos el reloj
+                        actualizarContador();
+                    }
+                },
+                (error) => {
+                    console.error("Error obteniendo ubicación:", error);
+                },
+                {
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                    timeout: 5000
+                }
+            );
+        }
+
+        // 2. ACTUALIZAR TEXTO VISUAL
+        function actualizarContador() {
+            document.getElementById('estadoPuntos').innerText = `Puntos capturados: ${historialRuta.length}`;
+        }
+
+        // 3. COMUNICACIÓN CON TRACCAR SERVER (AHORA INCLUYE EL CLIENTE)
+        async function enviarATraccar(punto, idVendedor) {
+            const tiempoUnix = Math.floor(new Date(punto.tiempo).getTime() / 1000);
+            
+            // NUEVO: Capturamos el nombre del cliente
+            const nombreCliente = document.getElementById('nombreCliente').value;
+            // Lo codificamos por si tiene espacios (ej: "Distribuidora Centro" -> "Distribuidora%20Centro")
+            const clienteUrl = encodeURIComponent(nombreCliente);
+            
+            // NUEVO: Agregamos &cliente= a la URL. (RECUERDA PONER TU LINK DE NGROK)
+            const urlTraccar = `https://ramrod-demystify-fled.ngrok-free.dev/?id=${idVendedor}&lat=${punto.lat}&lon=${punto.lon}&timestamp=${tiempoUnix}&cliente=${clienteUrl}`;
+            
+            try {
+                await fetch(urlTraccar, { 
+                    method: 'GET',
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                }); 
+            } catch (error) {
+                console.log("Punto enviado correctamente (Falso error de CORS ignorado)");
+            }
+        }
+
+        // 4. GUARDADO OFFLINE (SIN INTERNET)
+        function guardarViajePendiente(idVendedor, ruta) {
+            let pendientes = JSON.parse(localStorage.getItem('viajesPendientes')) || [];
+            pendientes.push({ 
+                idVendedor: idVendedor, 
+                ruta: ruta, 
+                fechaGuardado: new Date().toISOString() 
+            });
+            localStorage.setItem('viajesPendientes', JSON.stringify(pendientes));
+            alert("Estás sin conexión. La ruta se guardó en el teléfono y se enviará automáticamente cuando recuperes el internet.");
+        }
+
+        // FUNCION AUXILIAR PARA PAUSAR EL CÓDIGO (NUEVO)
+        const pausar = (milisegundos) => new Promise(resolve => setTimeout(resolve, milisegundos));
+
+        // 5. FINALIZAR BOTÓN (MODIFICADO SIN LÍMITE DE TIEMPO)
+        async function finalizarYSincronizar() {
+            if (rastreadorId !== null) {
+                navigator.geolocation.clearWatch(rastreadorId);
+                rastreadorId = null;
+            }
+
+            const idVendedor = document.getElementById('nombreVendedor').value;
+            document.getElementById('btnIniciar').disabled = false;
+            document.getElementById('btnFinalizar').disabled = true;
+            document.getElementById('nombreVendedor').disabled = false;
+
+            if (historialRuta.length === 0) {
+                alert("No hay ubicaciones registradas en este viaje.");
+                return;
+            }
+
+            if (!navigator.onLine) {
+                guardarViajePendiente(idVendedor, historialRuta);
+                historialRuta = []; 
+                actualizarContador();
+                return; 
+            }
+
+            try {
+                // Enviamos todos los puntos en ráfaga
+                document.getElementById('estadoPuntos').innerText = `Enviando 0 de ${historialRuta.length}...`;
+                
+                let enviados = 0;
+                for (const punto of historialRuta) {
+                    await enviarATraccar(punto, idVendedor);
+                    enviados++;
+                    document.getElementById('estadoPuntos').innerText = `Enviando ${enviados} de ${historialRuta.length}...`;
+                }
+                
+                alert("¡Ruta procesada y enviada a Traccar con éxito!");
+                historialRuta = []; 
+                actualizarContador();
+            } catch (error) {
+                console.error("Fallo de red inesperado al intentar enviar:", error);
+                guardarViajePendiente(idVendedor, historialRuta);
+                historialRuta = [];
+                actualizarContador();
+            }
+        }
+
+        // 6. SINCRONIZADOR AUTOMÁTICO EN SEGUNDO PLANO (MODIFICADO SIN LÍMITE)
+        async function sincronizarPendientes() {
+            let pendientes = JSON.parse(localStorage.getItem('viajesPendientes')) || [];
+            
+            if (pendientes.length === 0 || !navigator.onLine) return;
+
+            let viajesQueFallaron = []; 
+
+            for (const viaje of pendientes) {
+                try {
+                    // Recorremos y enviamos cada punto del viaje guardado offline en ráfaga
+                    for (const punto of viaje.ruta) {
+                        await enviarATraccar(punto, viaje.idVendedor);
+                    }
+                    console.log(`Viaje pendiente de ${viaje.idVendedor} enviado correctamente.`);
+                } catch (error) {
+                    console.error("Error intentando enviar un viaje pendiente:", error);
+                    viajesQueFallaron.push(viaje); // Regresa a la cola si falla
+                }
+            }
+
+            // Actualizar la memoria del navegador
+            localStorage.setItem('viajesPendientes', JSON.stringify(viajesQueFallaron));
+            
+            if(pendientes.length > 0 && viajesQueFallaron.length === 0) {
+                alert("¡Los recorridos que estaban pendientes por falta de señal ya se enviaron a Traccar!");
+            }
+        }
+
+        // ACTIVADORES AUTOMÁTICOS
+        window.addEventListener('online', sincronizarPendientes); 
+        window.onload = sincronizarPendientes; 
+
+    </script>
+</body>
+</html>

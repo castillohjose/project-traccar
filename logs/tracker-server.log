@@ -1,0 +1,737 @@
+2026-08-11 00:33:59  INFO: Operating system name: Linux version: 6.18.33.2-microsoft-standard-WSL2 architecture: amd64
+2026-08-11 00:33:59  INFO: Java runtime name: OpenJDK 64-Bit Server VM vendor: Eclipse Adoptium version: 25.0.3+9-LTS
+2026-08-11 00:33:59  INFO: Memory limit heap: 970mb non-heap: 0mb
+2026-08-11 00:33:59  INFO: Character encoding: UTF-8
+2026-08-11 00:33:59  INFO: Version: 6.14.5
+2026-08-11 00:33:59  INFO: Starting server...
+2026-08-11 00:33:59  INFO: HikariPool-1 - Starting...
+2026-08-11 00:34:00  INFO: HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28d79cba
+2026-08-11 00:34:00  INFO: HikariPool-1 - Start completed.
+2026-08-11 00:34:00  INFO: Set default schema name to public
+2026-08-11 00:34:00  INFO: Creating snapshot
+2026-08-11 00:34:00  INFO: Successfully acquired change log lock
+2026-08-11 00:34:00  INFO: Creating database changelog table with name: public.databasechangelog
+2026-08-11 00:34:00  INFO: Clearing database change log checksums for database postgresql
+2026-08-11 00:34:00  INFO: Successfully released change log lock
+2026-08-11 00:34:00  INFO: Command execution complete
+2026-08-11 00:34:01  INFO: Reading from public.databasechangelog
+2026-08-11 00:34:02  INFO: Successfully acquired change log lock
+2026-08-11 00:34:02  INFO: Using deploymentId: 6408440328
+2026-08-11 00:34:02  INFO: Reading from public.databasechangelog
+2026-08-11 00:34:02  INFO: Table tc_attributes created
+2026-08-11 00:34:02  INFO: Table tc_calendars created
+2026-08-11 00:34:02  INFO: Table tc_commands created
+2026-08-11 00:34:02  INFO: Table tc_device_attribute created
+2026-08-11 00:34:02  INFO: Table tc_device_command created
+2026-08-11 00:34:02  INFO: Table tc_device_driver created
+2026-08-11 00:34:02  INFO: Table tc_device_geofence created
+2026-08-11 00:34:02  INFO: Table tc_device_maintenance created
+2026-08-11 00:34:02  INFO: Table tc_device_notification created
+2026-08-11 00:34:02  INFO: Table tc_devices created
+2026-08-11 00:34:02  INFO: Table tc_drivers created
+2026-08-11 00:34:02  INFO: Table tc_events created
+2026-08-11 00:34:02  INFO: Table tc_geofences created
+2026-08-11 00:34:02  INFO: Table tc_group_attribute created
+2026-08-11 00:34:02  INFO: Table tc_group_command created
+2026-08-11 00:34:02  INFO: Table tc_group_driver created
+2026-08-11 00:34:02  INFO: Table tc_group_geofence created
+2026-08-11 00:34:02  INFO: Table tc_group_maintenance created
+2026-08-11 00:34:02  INFO: Table tc_group_notification created
+2026-08-11 00:34:02  INFO: Table tc_groups created
+2026-08-11 00:34:02  INFO: Table tc_maintenances created
+2026-08-11 00:34:02  INFO: Table tc_notifications created
+2026-08-11 00:34:02  INFO: Table tc_positions created
+2026-08-11 00:34:02  INFO: Table tc_servers created
+2026-08-11 00:34:02  INFO: Table tc_statistics created
+2026-08-11 00:34:02  INFO: Table tc_user_attribute created
+2026-08-11 00:34:02  INFO: Table tc_user_calendar created
+2026-08-11 00:34:02  INFO: Table tc_user_command created
+2026-08-11 00:34:02  INFO: Table tc_user_device created
+2026-08-11 00:34:02  INFO: Table tc_user_driver created
+2026-08-11 00:34:02  INFO: Table tc_user_geofence created
+2026-08-11 00:34:02  INFO: Table tc_user_group created
+2026-08-11 00:34:02  INFO: Table tc_user_maintenance created
+2026-08-11 00:34:02  INFO: Table tc_user_notification created
+2026-08-11 00:34:02  INFO: Table tc_user_user created
+2026-08-11 00:34:02  INFO: Table tc_users created
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_command (commandid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_command (deviceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_driver (deviceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_driver (driverid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_geofence (deviceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_geofence (geofenceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_maintenance (deviceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_maintenance (maintenanceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_notification (deviceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_device_notification (notificationid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_devices (groupid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_events (deviceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_geofences (calendarid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_attribute (attributeid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_attribute (groupid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_command (commandid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_command (groupid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_driver (driverid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_driver (groupid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_geofence (geofenceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_geofence (groupid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_maintenance (groupid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_maintenance (maintenanceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_notification (groupid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_group_notification (notificationid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_notifications (calendarid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_positions (deviceid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_user_attribute (attributeid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_user_attribute (userid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_user_calendar (calendarid)
+2026-08-11 00:34:02  INFO: Foreign key constraint added to tc_user_calendar (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_command (commandid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_command (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_device_attribute (attributeid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_device_attribute (deviceid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_device (deviceid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_device (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_driver (driverid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_driver (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_geofence (geofenceid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_geofence (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_group (groupid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_group (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_maintenance (maintenanceid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_maintenance (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_notification (notificationid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_notification (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_user (userid)
+2026-08-11 00:34:03  INFO: New row inserted into tc_servers
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.0-clean::changelog-4.0-clean::author ran successfully in 492ms
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_groups (groupid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_user (manageduserid)
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.0-clean::changelog-4.0-clean-common::author ran successfully in 12ms
+2026-08-11 00:34:03  INFO: Marking ChangeSet: "changelog-4.1::changelog-4.1-mssql::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : DBMS Precondition failed: expected mssql, got postgresql
+
+2026-08-11 00:34:03  INFO: Creating snapshot
+2026-08-11 00:34:03  INFO: Index user_device_user_id created
+2026-08-11 00:34:03  INFO: Index position_deviceid_fixtime created
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.7::changelog-4.7::author ran successfully in 62ms
+2026-08-11 00:34:03  INFO: Index event_deviceid_servertime created
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.9::changelog-4.9::author ran successfully in 6ms
+2026-08-11 00:34:03  INFO: Columns protocols(VARCHAR(4096)) added to tc_statistics
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.10::changelog-4.10::author ran successfully in 7ms
+2026-08-11 00:34:03  INFO: Columns announcement(VARCHAR(4000)) added to tc_servers
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.11::changelog-4.11::author ran successfully in 11ms
+2026-08-11 00:34:03  INFO: Column tc_events.servertime renamed to eventtime
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.13::changelog-4.13::author ran successfully in 11ms
+2026-08-11 00:34:03  INFO: Table tc_orders created
+2026-08-11 00:34:03  INFO: Table tc_user_order created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_order (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_order (orderid)
+2026-08-11 00:34:03  INFO: Table tc_group_order created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_group_order (groupid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_group_order (orderid)
+2026-08-11 00:34:03  INFO: Table tc_device_order created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_device_order (deviceid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_device_order (orderid)
+2026-08-11 00:34:03  INFO: ChangeSet changelog-4.15::changelog-4.15::author ran successfully in 35ms
+2026-08-11 00:34:03  INFO: Columns disablereports(BOOLEAN) added to tc_servers
+2026-08-11 00:34:03  INFO: Columns disablereports(BOOLEAN) added to tc_users
+2026-08-11 00:34:03  INFO: Column tc_orders.toAddress renamed to toaddresstmp
+2026-08-11 00:34:03  INFO: Column tc_orders.fromAddress renamed to fromaddresstmp
+2026-08-11 00:34:03  INFO: Column tc_orders.toaddresstmp renamed to toaddress
+2026-08-11 00:34:03  INFO: Column tc_orders.fromaddresstmp renamed to fromaddress
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.0::changelog-5.0::author ran successfully in 23ms
+2026-08-11 00:34:03  INFO: Index idx_drivers_uniqueid created
+2026-08-11 00:34:03  INFO: Index idx_devices_uniqueid created
+2026-08-11 00:34:03  INFO: Index idx_users_email created
+2026-08-11 00:34:03  INFO: Index idx_users_login created
+2026-08-11 00:34:03  INFO: Index idx_users_token created
+2026-08-11 00:34:03  INFO: Columns overlayurl(VARCHAR(512)) added to tc_servers
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.1::changelog-5.1::author ran successfully in 19ms
+2026-08-11 00:34:03  INFO: Columns status(CHAR(8)) added to tc_devices
+2026-08-11 00:34:03  INFO: Columns geofenceids(VARCHAR(128)) added to tc_devices
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.2::changelog-5.2::author ran successfully in 8ms
+2026-08-11 00:34:03  INFO: Columns fixedemail(BOOLEAN) added to tc_servers
+2026-08-11 00:34:03  INFO: Columns fixedemail(BOOLEAN) added to tc_users
+2026-08-11 00:34:03  INFO: Columns expirationtime(TIMESTAMP) added to tc_devices
+2026-08-11 00:34:03  INFO: Table tc_keystore created
+2026-08-11 00:34:03  INFO: Index idx_users_token dropped from table tc_users
+2026-08-11 00:34:03  INFO: Column tc_users.token dropped
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.3::changelog-5.3::author ran successfully in 28ms
+2026-08-11 00:34:03  INFO: Columns motionstate(BOOLEAN),motiontime(TIMESTAMP),motiondistance(DOUBLE),overspeedstate(BOOLEAN),overspeedtime(TIMESTAMP),overspeedgeofenceid(INT) added to tc_devices
+2026-08-11 00:34:03  INFO: Table tc_commands_queue created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_commands_queue (deviceid)
+2026-08-11 00:34:03  INFO: Index idx_commands_queue_deviceid created
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.4::changelog-5.4::author ran successfully in 21ms
+2026-08-11 00:34:03  INFO: Column tc_commands_queue.description dropped
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.5::changelog-5.5::author ran successfully in 4ms
+2026-08-11 00:34:03  INFO: Columns motionstreak(BOOLEAN) added to tc_devices
+2026-08-11 00:34:03  INFO: Table tc_reports created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_reports (calendarid)
+2026-08-11 00:34:03  INFO: Table tc_user_report created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_report (userid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_user_report (reportid)
+2026-08-11 00:34:03  INFO: Table tc_group_report created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_group_report (groupid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_group_report (reportid)
+2026-08-11 00:34:03  INFO: Table tc_device_report created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_device_report (deviceid)
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_device_report (reportid)
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.6::changelog-5.6::author ran successfully in 37ms
+2026-08-11 00:34:03  INFO: Columns commandid(INT) added to tc_notifications
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_notifications (commandid)
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.7::changelog-5.7::author ran successfully in 9ms
+2026-08-11 00:34:03  INFO: Column tc_devices.geofenceids dropped
+2026-08-11 00:34:03  INFO: Columns geofenceids(VARCHAR(128)) added to tc_positions
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.8::changelog-5.8::author ran successfully in 7ms
+2026-08-11 00:34:03  INFO: Columns calendarid(INT) added to tc_devices
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_devices (calendarid)
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.9::changelog-5.9::author ran successfully in 11ms
+2026-08-11 00:34:03  INFO: Columns totpkey(VARCHAR(64)) added to tc_users
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.10::changelog-5.10::author ran successfully in 6ms
+2026-08-11 00:34:03  INFO: Columns temporary(BOOLEAN) added to tc_users
+2026-08-11 00:34:03  INFO: ChangeSet changelog-5.11::changelog-5.11::author ran successfully in 7ms
+2026-08-11 00:34:03  INFO: Column tc_servers.twelvehourformat dropped
+2026-08-11 00:34:03  INFO: Column tc_users.twelvehourformat dropped
+2026-08-11 00:34:03  INFO: Columns priority(INT) added to tc_attributes
+2026-08-11 00:34:03  INFO: ChangeSet changelog-6.2::changelog-6.2::author ran successfully in 17ms
+2026-08-11 00:34:03  INFO: Creating snapshot
+2026-08-11 00:34:03  INFO: Marking ChangeSet: "changelog-6.3::changelog-6.3-old::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : Foreign Key public.fk_event_deviceid does not exist
+
+2026-08-11 00:34:03  INFO: Foreign key fk_events_deviceid dropped
+2026-08-11 00:34:03  INFO: Foreign key fk_positions_deviceid dropped
+2026-08-11 00:34:03  INFO: ChangeSet changelog-6.3::changelog-6.3-new::author ran successfully in 42ms
+2026-08-11 00:34:03  INFO: Columns description(VARCHAR(4000)) added to tc_notifications
+2026-08-11 00:34:03  INFO: ChangeSet changelog-6.6::changelog-6.6::author ran successfully in 6ms
+2026-08-11 00:34:03  INFO: Creating snapshot
+2026-08-11 00:34:03  INFO: Table tc_actions created
+2026-08-11 00:34:03  INFO: ChangeSet changelog-6.7.0::changelog-6.7.0::author ran successfully in 86ms
+2026-08-11 00:34:03  INFO: Marking ChangeSet: "changelog-6.8.0::changelog-6.8.0-timescale::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : SQL Precondition failed.  Expected '1' got '0'
+
+2026-08-11 00:34:03  INFO: Columns motionpositionid(INT) added to tc_devices
+2026-08-11 00:34:03  INFO: ChangeSet changelog-6.9.0::changelog-6.9.0::author ran successfully in 4ms
+2026-08-11 00:34:03  INFO: Marking ChangeSet: "changelog-6.11.0::changelog-6.11.0-timescale::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : SQL Precondition failed.  Expected '1' got '0'
+
+2026-08-11 00:34:03  INFO: Marking ChangeSet: "changelog-6.11.0::changelog-6.11.0-other::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : Not precondition failed
+
+2026-08-11 00:34:03  INFO: Table tc_revoked_tokens created
+2026-08-11 00:34:03  INFO: ChangeSet changelog-6.11.0::changelog-6.11.0::author ran successfully in 10ms
+2026-08-11 00:34:03  INFO: Columns motionlatitude(DOUBLE),motionlongitude(DOUBLE) added to tc_devices
+2026-08-11 00:34:03  INFO: Table tc_device_device created
+2026-08-11 00:34:03  INFO: Foreign key constraint added to tc_device_device (deviceid)
+2026-08-11 00:34:03  INFO: ChangeSet changelog-6.13.0::changelog-6.13.0::author ran successfully in 15ms
+2026-08-11 00:34:04  INFO: Creating snapshot
+2026-08-11 00:34:04  INFO: Foreign key constraint added to tc_device_device (linkeddeviceid)
+2026-08-11 00:34:04  INFO: ChangeSet changelog-6.13.0::changelog-6.13.0-fk-linkeddeviceid::author ran successfully in 341ms
+2026-08-11 00:34:04  INFO: UPDATE SUMMARY
+2026-08-11 00:34:04  INFO: Run:                         33
+2026-08-11 00:34:04  INFO: Previously run:               0
+2026-08-11 00:34:04  INFO: Filtered out:                 1
+2026-08-11 00:34:04  INFO: -------------------------------
+2026-08-11 00:34:04  INFO: Total change sets:           34
+2026-08-11 00:34:04  INFO: FILTERED CHANGE SETS SUMMARY
+2026-08-11 00:34:04  INFO: DBMS mismatch:                1
+2026-08-11 00:34:04  INFO: Update summary generated
+2026-08-11 00:34:04  INFO: Update command completed successfully.
+2026-08-11 00:34:04  INFO: Successfully released change log lock
+2026-08-11 00:34:04  INFO: Command execution complete
+2026-08-11 00:34:05  INFO: jetty-12.1.8; built: 2026-04-01T01:09:18.991Z; git: c9cdc9aaa434a3665b8a53b4d1cc3684992da649; jvm 25.0.3+9-LTS
+2026-08-11 00:34:05  INFO: Session workerName=node0
+2026-08-11 00:34:05  INFO: Started oeje10s.ServletContextHandler@60ab895f{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@295f2d1b{STARTED}}
+2026-08-11 00:34:06  INFO: Started oeje10s.ServletContextHandler@60ab895f{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@295f2d1b{STARTED}}
+2026-08-11 00:34:06  INFO: Started oejs.ServerConnector@1d3e5a05{HTTP/1.1, (http/1.1)}{0.0.0.0:8082}
+2026-08-11 00:34:06  INFO: Started oejs.Server@52fec840{STARTING}[12.1.8,sto=0] @767ms
+2026-08-11 01:57:23  INFO: Operating system name: Linux version: 6.18.33.2-microsoft-standard-WSL2 architecture: amd64
+2026-08-11 01:57:23  INFO: Java runtime name: OpenJDK 64-Bit Server VM vendor: Eclipse Adoptium version: 25.0.3+9-LTS
+2026-08-11 01:57:23  INFO: Memory limit heap: 970mb non-heap: 0mb
+2026-08-11 01:57:23  INFO: Character encoding: UTF-8
+2026-08-11 01:57:23  INFO: Version: 6.14.5
+2026-08-11 01:57:23  INFO: Starting server...
+2026-08-11 01:57:23  INFO: HikariPool-1 - Starting...
+2026-08-11 01:57:23  INFO: HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@87abc48
+2026-08-11 01:57:23  INFO: HikariPool-1 - Start completed.
+2026-08-11 01:57:24  INFO: Set default schema name to public
+2026-08-11 01:57:24  INFO: Successfully acquired change log lock
+2026-08-11 01:57:24  INFO: Clearing database change log checksums for database postgresql
+2026-08-11 01:57:24  INFO: Successfully released change log lock
+2026-08-11 01:57:24  INFO: Command execution complete
+2026-08-11 01:57:25  INFO: Reading from public.databasechangelog
+2026-08-11 01:57:26  INFO: Reading from public.databasechangelog
+2026-08-11 01:57:26  INFO: Reading from public.databasechangelog
+2026-08-11 01:57:26  INFO: UPDATE SUMMARY
+2026-08-11 01:57:26  INFO: Run:                          0
+2026-08-11 01:57:26  INFO: Previously run:              33
+2026-08-11 01:57:26  INFO: Filtered out:                 1
+2026-08-11 01:57:26  INFO: -------------------------------
+2026-08-11 01:57:26  INFO: Total change sets:           34
+2026-08-11 01:57:26  INFO: FILTERED CHANGE SETS SUMMARY
+2026-08-11 01:57:26  INFO: DBMS mismatch:                1
+2026-08-11 01:57:26  INFO: Update summary generated
+2026-08-11 01:57:26  INFO: Command execution complete
+2026-08-11 01:57:27  INFO: jetty-12.1.8; built: 2026-04-01T01:09:18.991Z; git: c9cdc9aaa434a3665b8a53b4d1cc3684992da649; jvm 25.0.3+9-LTS
+2026-08-11 01:57:27  INFO: Session workerName=node0
+2026-08-11 01:57:27  INFO: Started oeje10s.ServletContextHandler@cf984d9{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@1fa98a22{STARTED}}
+2026-08-11 01:57:28  INFO: Started oeje10s.ServletContextHandler@cf984d9{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@1fa98a22{STARTED}}
+2026-08-11 01:57:28  INFO: Started oejs.ServerConnector@2a19c36b{HTTP/1.1, (http/1.1)}{0.0.0.0:8082}
+2026-08-11 01:57:28  INFO: Started oejs.Server@299ea986{STARTING}[12.1.8,sto=0] @856ms
+2026-08-11 02:07:01  INFO: [T98548c0d] connected
+2026-08-11 02:07:01  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417497&lon=-67.487223&timestamp=1786413983&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:01  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:01  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:01  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417967&lon=-67.4872086&timestamp=1786413988&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:01  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:01  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:01  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.041809&lon=-67.4872553&timestamp=1786413994&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:01  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:01  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:02  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0418274&lon=-67.4872893&timestamp=1786413999&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:02  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:02  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:02  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417931&lon=-67.487286&timestamp=1786414005&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:02  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:02  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:02  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417957&lon=-67.4872782&timestamp=1786414010&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:02  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:02  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:03  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417937&lon=-67.4872804&timestamp=1786414015&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:03  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:03  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:03  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417948&lon=-67.4872872&timestamp=1786414021&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:03  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:03  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:04  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417967&lon=-67.4872954&timestamp=1786414026&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:04  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:04  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:07:04  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0417919&lon=-67.487296&timestamp=1786414032&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:07:04  WARN: Unknown device - 1228 (172.18.0.1)
+2026-08-11 02:07:04  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:08:07  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0418124&lon=-67.4872342&timestamp=1786414088&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:08:07  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:08:07  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0418231&lon=-67.4872387&timestamp=1786414094&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:08:07  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:08:07  INFO: [T98548c0d: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0418569&lon=-67.487307&timestamp=1786414099&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:08:07  INFO: [T98548c0d: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:08:10  INFO: [T98548c0d] id: 1228, time: 2026-08-11 02:08:08, lat: 10.04181, lon: -67.48723, course: 0.0
+2026-08-11 02:08:10  INFO: [T98548c0d] id: 1228, time: 2026-08-11 02:08:14, lat: 10.04182, lon: -67.48724, course: 0.0
+2026-08-11 02:08:10  INFO: [T98548c0d] id: 1228, time: 2026-08-11 02:08:19, lat: 10.04186, lon: -67.48731, course: 0.0
+2026-08-11 02:09:38  INFO: [T98548c0d] disconnected
+2026-08-11 02:19:31  INFO: Stopping server...
+2026-08-11 02:20:01  INFO: Operating system name: Linux version: 6.18.33.2-microsoft-standard-WSL2 architecture: amd64
+2026-08-11 02:20:01  INFO: Java runtime name: OpenJDK 64-Bit Server VM vendor: Eclipse Adoptium version: 25.0.3+9-LTS
+2026-08-11 02:20:01  INFO: Memory limit heap: 970mb non-heap: 0mb
+2026-08-11 02:20:01  INFO: Character encoding: UTF-8
+2026-08-11 02:20:01  INFO: Version: 6.14.5
+2026-08-11 02:20:01  INFO: Starting server...
+2026-08-11 02:20:01  INFO: HikariPool-1 - Starting...
+2026-08-11 02:20:02  INFO: HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28d79cba
+2026-08-11 02:20:02  INFO: HikariPool-1 - Start completed.
+2026-08-11 02:20:02  INFO: Set default schema name to public
+2026-08-11 02:20:02  INFO: Successfully acquired change log lock
+2026-08-11 02:20:02  INFO: Clearing database change log checksums for database postgresql
+2026-08-11 02:20:02  INFO: Successfully released change log lock
+2026-08-11 02:20:02  INFO: Command execution complete
+2026-08-11 02:20:03  INFO: Reading from public.databasechangelog
+2026-08-11 02:20:04  INFO: Reading from public.databasechangelog
+2026-08-11 02:20:04  INFO: Reading from public.databasechangelog
+2026-08-11 02:20:04  INFO: UPDATE SUMMARY
+2026-08-11 02:20:04  INFO: Run:                          0
+2026-08-11 02:20:04  INFO: Previously run:              33
+2026-08-11 02:20:04  INFO: Filtered out:                 1
+2026-08-11 02:20:04  INFO: -------------------------------
+2026-08-11 02:20:04  INFO: Total change sets:           34
+2026-08-11 02:20:04  INFO: FILTERED CHANGE SETS SUMMARY
+2026-08-11 02:20:04  INFO: DBMS mismatch:                1
+2026-08-11 02:20:04  INFO: Update summary generated
+2026-08-11 02:20:04  INFO: Command execution complete
+2026-08-11 02:20:05  INFO: jetty-12.1.8; built: 2026-04-01T01:09:18.991Z; git: c9cdc9aaa434a3665b8a53b4d1cc3684992da649; jvm 25.0.3+9-LTS
+2026-08-11 02:20:05  INFO: Session workerName=node0
+2026-08-11 02:20:05  INFO: Started oeje10s.ServletContextHandler@13ee97af{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@67e11bda{STARTED}}
+2026-08-11 02:20:06  INFO: Started oeje10s.ServletContextHandler@13ee97af{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@67e11bda{STARTED}}
+2026-08-11 02:20:06  INFO: Started oejs.ServerConnector@679ffb57{HTTP/1.1, (http/1.1)}{0.0.0.0:8082}
+2026-08-11 02:20:06  INFO: Started oejs.Server@364c93e6{STARTING}[12.1.8,sto=0] @842ms
+2026-08-11 02:21:08  INFO: [Ta9335d3f] connected
+2026-08-11 02:21:08  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=132&lat=10.0416747&lon=-67.4871313&timestamp=1786414876&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:21:08  INFO: Automatically registered 132
+2026-08-11 02:21:08  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:21:08  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=132&lat=10.0418218&lon=-67.4871943&timestamp=1786414881&cliente=Mi%20tel%C3%A9fono%20we HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:21:08  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:21:11  INFO: [Ta9335d3f] id: 132, time: 2026-08-11 02:21:16, lat: 10.04167, lon: -67.48713, course: 0.0
+2026-08-11 02:21:11  INFO: [Ta9335d3f] id: 132, time: 2026-08-11 02:21:21, lat: 10.04182, lon: -67.48719, course: 0.0
+2026-08-11 02:22:23  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0416906&lon=-67.487141&timestamp=1786414946&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:22:23  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:22:23  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0416692&lon=-67.4871701&timestamp=1786414951&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:22:23  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:22:24  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0416906&lon=-67.4871834&timestamp=1786414956&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:22:24  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:22:26  INFO: [Ta9335d3f] id: 1228, time: 2026-08-11 02:22:26, lat: 10.04169, lon: -67.48714, course: 0.0
+2026-08-11 02:22:26  INFO: [Ta9335d3f] id: 1228, time: 2026-08-11 02:22:31, lat: 10.04167, lon: -67.48717, course: 0.0
+2026-08-11 02:22:27  INFO: [Ta9335d3f] id: 1228, time: 2026-08-11 02:22:36, lat: 10.04169, lon: -67.48718, course: 0.0
+2026-08-11 02:23:03  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=1233&lat=10.0417603&lon=-67.4872361&timestamp=1786414986&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:23:03  INFO: Automatically registered 1233
+2026-08-11 02:23:03  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:23:03  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=1233&lat=10.0417677&lon=-67.4872451&timestamp=1786414991&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:23:03  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:23:04  INFO: [Ta9335d3f: osmand < 172.18.0.1] OPTIONS /?id=1233&lat=10.0417747&lon=-67.4872564&timestamp=1786414996&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:23:04  INFO: [Ta9335d3f: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:23:06  INFO: [Ta9335d3f] id: 1233, time: 2026-08-11 02:23:06, lat: 10.04176, lon: -67.48724, course: 0.0
+2026-08-11 02:23:06  INFO: [Ta9335d3f] id: 1233, time: 2026-08-11 02:23:11, lat: 10.04177, lon: -67.48725, course: 0.0
+2026-08-11 02:23:07  INFO: [Ta9335d3f] id: 1233, time: 2026-08-11 02:23:16, lat: 10.04177, lon: -67.48726, course: 0.0
+2026-08-11 02:24:34  INFO: [Ta9335d3f] disconnected
+2026-08-11 02:40:38  INFO: Operating system name: Linux version: 6.18.33.2-microsoft-standard-WSL2 architecture: amd64
+2026-08-11 02:40:38  INFO: Java runtime name: OpenJDK 64-Bit Server VM vendor: Eclipse Adoptium version: 25.0.3+9-LTS
+2026-08-11 02:40:38  INFO: Memory limit heap: 970mb non-heap: 0mb
+2026-08-11 02:40:38  INFO: Character encoding: UTF-8
+2026-08-11 02:40:38  INFO: Version: 6.14.5
+2026-08-11 02:40:38  INFO: Starting server...
+2026-08-11 02:40:38  INFO: HikariPool-1 - Starting...
+2026-08-11 02:40:39  INFO: HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28d79cba
+2026-08-11 02:40:39  INFO: HikariPool-1 - Start completed.
+2026-08-11 02:40:39  INFO: Set default schema name to public
+2026-08-11 02:40:39  INFO: Successfully acquired change log lock
+2026-08-11 02:40:39  INFO: Clearing database change log checksums for database postgresql
+2026-08-11 02:40:39  INFO: Successfully released change log lock
+2026-08-11 02:40:39  INFO: Command execution complete
+2026-08-11 02:40:40  INFO: Reading from public.databasechangelog
+2026-08-11 02:40:41  INFO: Reading from public.databasechangelog
+2026-08-11 02:40:41  INFO: Reading from public.databasechangelog
+2026-08-11 02:40:41  INFO: UPDATE SUMMARY
+2026-08-11 02:40:41  INFO: Run:                          0
+2026-08-11 02:40:41  INFO: Previously run:              33
+2026-08-11 02:40:41  INFO: Filtered out:                 1
+2026-08-11 02:40:41  INFO: -------------------------------
+2026-08-11 02:40:41  INFO: Total change sets:           34
+2026-08-11 02:40:41  INFO: FILTERED CHANGE SETS SUMMARY
+2026-08-11 02:40:41  INFO: DBMS mismatch:                1
+2026-08-11 02:40:41  INFO: Update summary generated
+2026-08-11 02:40:41  INFO: Command execution complete
+2026-08-11 02:40:42  INFO: jetty-12.1.8; built: 2026-04-01T01:09:18.991Z; git: c9cdc9aaa434a3665b8a53b4d1cc3684992da649; jvm 25.0.3+9-LTS
+2026-08-11 02:40:42  INFO: Session workerName=node0
+2026-08-11 02:40:42  INFO: Started oeje10s.ServletContextHandler@13ee97af{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@67e11bda{STARTED}}
+2026-08-11 02:40:43  INFO: Started oeje10s.ServletContextHandler@13ee97af{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@67e11bda{STARTED}}
+2026-08-11 02:40:43  INFO: Started oejs.ServerConnector@6ac2c5a1{HTTP/1.1, (http/1.1)}{0.0.0.0:8082}
+2026-08-11 02:40:43  INFO: Started oejs.Server@66589252{STARTING}[12.1.8,sto=0] @888ms
+2026-08-11 02:41:24  INFO: [Tcf33f0ae] connected
+2026-08-11 02:41:24  INFO: [Tcf33f0ae: osmand < 172.18.0.1] OPTIONS /?id=145&lat=10.0416705&lon=-67.487121&timestamp=1786416080&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:41:25  INFO: Automatically registered 145
+2026-08-11 02:41:25  INFO: [Tcf33f0ae: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:41:25  INFO: [Tcf33f0ae: osmand < 172.18.0.1] OPTIONS /?id=145&lat=10.0417299&lon=-67.4871999&timestamp=1786416086&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:41:25  INFO: [Tcf33f0ae: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:41:25  INFO: [Tcf33f0ae: osmand < 172.18.0.1] OPTIONS /?id=145&lat=10.0417549&lon=-67.4872131&timestamp=1786416091&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:41:25  INFO: [Tcf33f0ae: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:41:26  INFO: [Tcf33f0ae: osmand < 172.18.0.1] OPTIONS /?id=145&lat=10.041761&lon=-67.4872211&timestamp=1786416097&cliente= HTTP/1.1\r\nHost: refusing-prowling-brewing.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://hilarious-caramel-dbcfaa.netlify.app\r\nPriority: u=1, i\r\nReferer: https://hilarious-caramel-dbcfaa.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.173\r\nX-Forwarded-Host: refusing-prowling-brewing.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 02:41:26  INFO: [Tcf33f0ae: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 02:41:28  INFO: [Tcf33f0ae] id: 145, time: 2026-08-11 02:41:20, lat: 10.04167, lon: -67.48712, course: 0.0
+2026-08-11 02:41:28  INFO: [Tcf33f0ae] id: 145, time: 2026-08-11 02:41:26, lat: 10.04173, lon: -67.48720, course: 0.0
+2026-08-11 02:41:28  INFO: [Tcf33f0ae] id: 145, time: 2026-08-11 02:41:31, lat: 10.04175, lon: -67.48721, course: 0.0
+2026-08-11 02:41:29  INFO: [Tcf33f0ae] id: 145, time: 2026-08-11 02:41:37, lat: 10.04176, lon: -67.48722, course: 0.0
+2026-08-11 02:42:56  INFO: [Tcf33f0ae] disconnected
+2026-08-11 03:22:39  INFO: Stopping server...
+2026-08-11 11:47:13  INFO: Operating system name: Linux version: 6.18.33.2-microsoft-standard-WSL2 architecture: amd64
+2026-08-11 11:47:13  INFO: Java runtime name: OpenJDK 64-Bit Server VM vendor: Eclipse Adoptium version: 25.0.3+9-LTS
+2026-08-11 11:47:13  INFO: Memory limit heap: 1952mb non-heap: 0mb
+2026-08-11 11:47:13  INFO: Character encoding: UTF-8
+2026-08-11 11:47:13  INFO: Version: 6.14.5
+2026-08-11 11:47:13  INFO: Starting server...
+2026-08-11 11:47:14  INFO: HikariPool-1 - Starting...
+2026-08-11 11:47:14  INFO: HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28d79cba
+2026-08-11 11:47:14  INFO: HikariPool-1 - Start completed.
+2026-08-11 11:47:14  INFO: Set default schema name to public
+2026-08-11 11:47:14  INFO: Creating snapshot
+2026-08-11 11:47:14  INFO: Successfully acquired change log lock
+2026-08-11 11:47:14  INFO: Creating database changelog table with name: public.databasechangelog
+2026-08-11 11:47:14  INFO: Clearing database change log checksums for database postgresql
+2026-08-11 11:47:14  INFO: Successfully released change log lock
+2026-08-11 11:47:15  INFO: Command execution complete
+2026-08-11 11:47:15  INFO: Reading from public.databasechangelog
+2026-08-11 11:47:15  INFO: Successfully acquired change log lock
+2026-08-11 11:47:15  INFO: Using deploymentId: 6448834545
+2026-08-11 11:47:15  INFO: Reading from public.databasechangelog
+2026-08-11 11:47:16  INFO: Table tc_attributes created
+2026-08-11 11:47:16  INFO: Table tc_calendars created
+2026-08-11 11:47:16  INFO: Table tc_commands created
+2026-08-11 11:47:16  INFO: Table tc_device_attribute created
+2026-08-11 11:47:16  INFO: Table tc_device_command created
+2026-08-11 11:47:16  INFO: Table tc_device_driver created
+2026-08-11 11:47:16  INFO: Table tc_device_geofence created
+2026-08-11 11:47:16  INFO: Table tc_device_maintenance created
+2026-08-11 11:47:16  INFO: Table tc_device_notification created
+2026-08-11 11:47:16  INFO: Table tc_devices created
+2026-08-11 11:47:16  INFO: Table tc_drivers created
+2026-08-11 11:47:16  INFO: Table tc_events created
+2026-08-11 11:47:16  INFO: Table tc_geofences created
+2026-08-11 11:47:16  INFO: Table tc_group_attribute created
+2026-08-11 11:47:16  INFO: Table tc_group_command created
+2026-08-11 11:47:16  INFO: Table tc_group_driver created
+2026-08-11 11:47:16  INFO: Table tc_group_geofence created
+2026-08-11 11:47:16  INFO: Table tc_group_maintenance created
+2026-08-11 11:47:16  INFO: Table tc_group_notification created
+2026-08-11 11:47:16  INFO: Table tc_groups created
+2026-08-11 11:47:16  INFO: Table tc_maintenances created
+2026-08-11 11:47:16  INFO: Table tc_notifications created
+2026-08-11 11:47:16  INFO: Table tc_positions created
+2026-08-11 11:47:16  INFO: Table tc_servers created
+2026-08-11 11:47:16  INFO: Table tc_statistics created
+2026-08-11 11:47:16  INFO: Table tc_user_attribute created
+2026-08-11 11:47:16  INFO: Table tc_user_calendar created
+2026-08-11 11:47:16  INFO: Table tc_user_command created
+2026-08-11 11:47:16  INFO: Table tc_user_device created
+2026-08-11 11:47:16  INFO: Table tc_user_driver created
+2026-08-11 11:47:16  INFO: Table tc_user_geofence created
+2026-08-11 11:47:16  INFO: Table tc_user_group created
+2026-08-11 11:47:16  INFO: Table tc_user_maintenance created
+2026-08-11 11:47:16  INFO: Table tc_user_notification created
+2026-08-11 11:47:16  INFO: Table tc_user_user created
+2026-08-11 11:47:16  INFO: Table tc_users created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_command (commandid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_command (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_driver (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_driver (driverid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_geofence (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_geofence (geofenceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_maintenance (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_maintenance (maintenanceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_notification (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_notification (notificationid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_devices (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_events (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_geofences (calendarid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_attribute (attributeid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_attribute (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_command (commandid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_command (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_driver (driverid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_driver (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_geofence (geofenceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_geofence (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_maintenance (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_maintenance (maintenanceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_notification (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_notification (notificationid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_notifications (calendarid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_positions (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_attribute (attributeid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_attribute (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_calendar (calendarid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_calendar (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_command (commandid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_command (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_attribute (attributeid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_attribute (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_device (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_device (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_driver (driverid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_driver (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_geofence (geofenceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_geofence (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_group (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_group (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_maintenance (maintenanceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_maintenance (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_notification (notificationid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_notification (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_user (userid)
+2026-08-11 11:47:16  INFO: New row inserted into tc_servers
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.0-clean::changelog-4.0-clean::author ran successfully in 230ms
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_groups (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_user (manageduserid)
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.0-clean::changelog-4.0-clean-common::author ran successfully in 6ms
+2026-08-11 11:47:16  INFO: Marking ChangeSet: "changelog-4.1::changelog-4.1-mssql::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : DBMS Precondition failed: expected mssql, got postgresql
+
+2026-08-11 11:47:16  INFO: Creating snapshot
+2026-08-11 11:47:16  INFO: Index user_device_user_id created
+2026-08-11 11:47:16  INFO: Index position_deviceid_fixtime created
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.7::changelog-4.7::author ran successfully in 36ms
+2026-08-11 11:47:16  INFO: Index event_deviceid_servertime created
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.9::changelog-4.9::author ran successfully in 4ms
+2026-08-11 11:47:16  INFO: Columns protocols(VARCHAR(4096)) added to tc_statistics
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.10::changelog-4.10::author ran successfully in 4ms
+2026-08-11 11:47:16  INFO: Columns announcement(VARCHAR(4000)) added to tc_servers
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.11::changelog-4.11::author ran successfully in 5ms
+2026-08-11 11:47:16  INFO: Column tc_events.servertime renamed to eventtime
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.13::changelog-4.13::author ran successfully in 3ms
+2026-08-11 11:47:16  INFO: Table tc_orders created
+2026-08-11 11:47:16  INFO: Table tc_user_order created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_order (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_order (orderid)
+2026-08-11 11:47:16  INFO: Table tc_group_order created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_order (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_order (orderid)
+2026-08-11 11:47:16  INFO: Table tc_device_order created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_order (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_order (orderid)
+2026-08-11 11:47:16  INFO: ChangeSet changelog-4.15::changelog-4.15::author ran successfully in 25ms
+2026-08-11 11:47:16  INFO: Columns disablereports(BOOLEAN) added to tc_servers
+2026-08-11 11:47:16  INFO: Columns disablereports(BOOLEAN) added to tc_users
+2026-08-11 11:47:16  INFO: Column tc_orders.toAddress renamed to toaddresstmp
+2026-08-11 11:47:16  INFO: Column tc_orders.fromAddress renamed to fromaddresstmp
+2026-08-11 11:47:16  INFO: Column tc_orders.toaddresstmp renamed to toaddress
+2026-08-11 11:47:16  INFO: Column tc_orders.fromaddresstmp renamed to fromaddress
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.0::changelog-5.0::author ran successfully in 12ms
+2026-08-11 11:47:16  INFO: Index idx_drivers_uniqueid created
+2026-08-11 11:47:16  INFO: Index idx_devices_uniqueid created
+2026-08-11 11:47:16  INFO: Index idx_users_email created
+2026-08-11 11:47:16  INFO: Index idx_users_login created
+2026-08-11 11:47:16  INFO: Index idx_users_token created
+2026-08-11 11:47:16  INFO: Columns overlayurl(VARCHAR(512)) added to tc_servers
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.1::changelog-5.1::author ran successfully in 15ms
+2026-08-11 11:47:16  INFO: Columns status(CHAR(8)) added to tc_devices
+2026-08-11 11:47:16  INFO: Columns geofenceids(VARCHAR(128)) added to tc_devices
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.2::changelog-5.2::author ran successfully in 4ms
+2026-08-11 11:47:16  INFO: Columns fixedemail(BOOLEAN) added to tc_servers
+2026-08-11 11:47:16  INFO: Columns fixedemail(BOOLEAN) added to tc_users
+2026-08-11 11:47:16  INFO: Columns expirationtime(TIMESTAMP) added to tc_devices
+2026-08-11 11:47:16  INFO: Table tc_keystore created
+2026-08-11 11:47:16  INFO: Index idx_users_token dropped from table tc_users
+2026-08-11 11:47:16  INFO: Column tc_users.token dropped
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.3::changelog-5.3::author ran successfully in 20ms
+2026-08-11 11:47:16  INFO: Columns motionstate(BOOLEAN),motiontime(TIMESTAMP),motiondistance(DOUBLE),overspeedstate(BOOLEAN),overspeedtime(TIMESTAMP),overspeedgeofenceid(INT) added to tc_devices
+2026-08-11 11:47:16  INFO: Table tc_commands_queue created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_commands_queue (deviceid)
+2026-08-11 11:47:16  INFO: Index idx_commands_queue_deviceid created
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.4::changelog-5.4::author ran successfully in 22ms
+2026-08-11 11:47:16  INFO: Column tc_commands_queue.description dropped
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.5::changelog-5.5::author ran successfully in 4ms
+2026-08-11 11:47:16  INFO: Columns motionstreak(BOOLEAN) added to tc_devices
+2026-08-11 11:47:16  INFO: Table tc_reports created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_reports (calendarid)
+2026-08-11 11:47:16  INFO: Table tc_user_report created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_report (userid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_user_report (reportid)
+2026-08-11 11:47:16  INFO: Table tc_group_report created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_report (groupid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_group_report (reportid)
+2026-08-11 11:47:16  INFO: Table tc_device_report created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_report (deviceid)
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_report (reportid)
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.6::changelog-5.6::author ran successfully in 26ms
+2026-08-11 11:47:16  INFO: Columns commandid(INT) added to tc_notifications
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_notifications (commandid)
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.7::changelog-5.7::author ran successfully in 5ms
+2026-08-11 11:47:16  INFO: Column tc_devices.geofenceids dropped
+2026-08-11 11:47:16  INFO: Columns geofenceids(VARCHAR(128)) added to tc_positions
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.8::changelog-5.8::author ran successfully in 6ms
+2026-08-11 11:47:16  INFO: Columns calendarid(INT) added to tc_devices
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_devices (calendarid)
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.9::changelog-5.9::author ran successfully in 6ms
+2026-08-11 11:47:16  INFO: Columns totpkey(VARCHAR(64)) added to tc_users
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.10::changelog-5.10::author ran successfully in 4ms
+2026-08-11 11:47:16  INFO: Columns temporary(BOOLEAN) added to tc_users
+2026-08-11 11:47:16  INFO: ChangeSet changelog-5.11::changelog-5.11::author ran successfully in 5ms
+2026-08-11 11:47:16  INFO: Column tc_servers.twelvehourformat dropped
+2026-08-11 11:47:16  INFO: Column tc_users.twelvehourformat dropped
+2026-08-11 11:47:16  INFO: Columns priority(INT) added to tc_attributes
+2026-08-11 11:47:16  INFO: ChangeSet changelog-6.2::changelog-6.2::author ran successfully in 8ms
+2026-08-11 11:47:16  INFO: Creating snapshot
+2026-08-11 11:47:16  INFO: Marking ChangeSet: "changelog-6.3::changelog-6.3-old::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : Foreign Key public.fk_event_deviceid does not exist
+
+2026-08-11 11:47:16  INFO: Foreign key fk_events_deviceid dropped
+2026-08-11 11:47:16  INFO: Foreign key fk_positions_deviceid dropped
+2026-08-11 11:47:16  INFO: ChangeSet changelog-6.3::changelog-6.3-new::author ran successfully in 21ms
+2026-08-11 11:47:16  INFO: Columns description(VARCHAR(4000)) added to tc_notifications
+2026-08-11 11:47:16  INFO: ChangeSet changelog-6.6::changelog-6.6::author ran successfully in 3ms
+2026-08-11 11:47:16  INFO: Creating snapshot
+2026-08-11 11:47:16  INFO: Table tc_actions created
+2026-08-11 11:47:16  INFO: ChangeSet changelog-6.7.0::changelog-6.7.0::author ran successfully in 26ms
+2026-08-11 11:47:16  INFO: Marking ChangeSet: "changelog-6.8.0::changelog-6.8.0-timescale::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : SQL Precondition failed.  Expected '1' got '0'
+
+2026-08-11 11:47:16  INFO: Columns motionpositionid(INT) added to tc_devices
+2026-08-11 11:47:16  INFO: ChangeSet changelog-6.9.0::changelog-6.9.0::author ran successfully in 3ms
+2026-08-11 11:47:16  INFO: Marking ChangeSet: "changelog-6.11.0::changelog-6.11.0-timescale::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : SQL Precondition failed.  Expected '1' got '0'
+
+2026-08-11 11:47:16  INFO: Marking ChangeSet: "changelog-6.11.0::changelog-6.11.0-other::author" as ran despite precondition failure due to onFail='MARK_RAN': 
+          changelog-master.xml : Not precondition failed
+
+2026-08-11 11:47:16  INFO: Table tc_revoked_tokens created
+2026-08-11 11:47:16  INFO: ChangeSet changelog-6.11.0::changelog-6.11.0::author ran successfully in 5ms
+2026-08-11 11:47:16  INFO: Columns motionlatitude(DOUBLE),motionlongitude(DOUBLE) added to tc_devices
+2026-08-11 11:47:16  INFO: Table tc_device_device created
+2026-08-11 11:47:16  INFO: Foreign key constraint added to tc_device_device (deviceid)
+2026-08-11 11:47:16  INFO: ChangeSet changelog-6.13.0::changelog-6.13.0::author ran successfully in 9ms
+2026-08-11 11:47:17  INFO: Creating snapshot
+2026-08-11 11:47:17  INFO: Foreign key constraint added to tc_device_device (linkeddeviceid)
+2026-08-11 11:47:17  INFO: ChangeSet changelog-6.13.0::changelog-6.13.0-fk-linkeddeviceid::author ran successfully in 398ms
+2026-08-11 11:47:17  INFO: UPDATE SUMMARY
+2026-08-11 11:47:17  INFO: Run:                         33
+2026-08-11 11:47:17  INFO: Previously run:               0
+2026-08-11 11:47:17  INFO: Filtered out:                 1
+2026-08-11 11:47:17  INFO: -------------------------------
+2026-08-11 11:47:17  INFO: Total change sets:           34
+2026-08-11 11:47:17  INFO: FILTERED CHANGE SETS SUMMARY
+2026-08-11 11:47:17  INFO: DBMS mismatch:                1
+2026-08-11 11:47:17  INFO: Update summary generated
+2026-08-11 11:47:17  INFO: Update command completed successfully.
+2026-08-11 11:47:17  INFO: Successfully released change log lock
+2026-08-11 11:47:17  INFO: Command execution complete
+2026-08-11 11:47:18  INFO: jetty-12.1.8; built: 2026-04-01T01:09:18.991Z; git: c9cdc9aaa434a3665b8a53b4d1cc3684992da649; jvm 25.0.3+9-LTS
+2026-08-11 11:47:18  INFO: Session workerName=node0
+2026-08-11 11:47:18  INFO: Started oeje10s.ServletContextHandler@49cceb19{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@197d5a87{STARTED}}
+2026-08-11 11:47:19  INFO: Started oeje10s.ServletContextHandler@49cceb19{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@197d5a87{STARTED}}
+2026-08-11 11:47:19  INFO: Started oejs.ServerConnector@39296cef{HTTP/1.1, (http/1.1)}{0.0.0.0:8082}
+2026-08-11 11:47:19  INFO: Started oejs.Server@7771c4e{STARTING}[12.1.8,sto=0] @765ms
+2026-08-11 11:52:51  INFO: [T749ff7cb] connected
+2026-08-11 11:52:51  INFO: [T749ff7cb: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467639&lon=-67.5147953&timestamp=1786449103&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:52:51  WARN: Automatic registration failed - ERROR: insert or update on table "tc_devices" violates foreign key constraint "fk_devices_groupid"
+  Detail: Key (groupid)=(1) is not present in table "tc_groups". - PSQLException (... < QueryBuilder:320 < DatabaseStorage:111 < ConnectionManager:200 < *:149 < BaseProtocolDecoder:135 < ...)
+2026-08-11 11:52:51  WARN: Unknown device - 1717 (172.18.0.1)
+2026-08-11 11:52:51  INFO: [T749ff7cb: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:52:52  INFO: [T749ff7cb: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467639&lon=-67.5147953&timestamp=1786449108&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:52:52  WARN: Automatic registration failed - ERROR: insert or update on table "tc_devices" violates foreign key constraint "fk_devices_groupid"
+  Detail: Key (groupid)=(1) is not present in table "tc_groups". - PSQLException (... < QueryBuilder:320 < DatabaseStorage:111 < ConnectionManager:200 < *:149 < BaseProtocolDecoder:135 < ...)
+2026-08-11 11:52:52  WARN: Unknown device - 1717 (172.18.0.1)
+2026-08-11 11:52:52  INFO: [T749ff7cb: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:52:52  INFO: [T749ff7cb: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467641&lon=-67.5147993&timestamp=1786449115&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:52:52  WARN: Automatic registration failed - ERROR: insert or update on table "tc_devices" violates foreign key constraint "fk_devices_groupid"
+  Detail: Key (groupid)=(1) is not present in table "tc_groups". - PSQLException (... < QueryBuilder:320 < DatabaseStorage:111 < ConnectionManager:200 < *:149 < BaseProtocolDecoder:135 < ...)
+2026-08-11 11:52:52  WARN: Unknown device - 1717 (172.18.0.1)
+2026-08-11 11:52:52  INFO: [T749ff7cb: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:52:53  INFO: [T749ff7cb: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467641&lon=-67.5147993&timestamp=1786449120&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:52:53  WARN: Automatic registration failed - ERROR: insert or update on table "tc_devices" violates foreign key constraint "fk_devices_groupid"
+  Detail: Key (groupid)=(1) is not present in table "tc_groups". - PSQLException (... < QueryBuilder:320 < DatabaseStorage:111 < ConnectionManager:200 < *:149 < BaseProtocolDecoder:135 < ...)
+2026-08-11 11:52:53  WARN: Unknown device - 1717 (172.18.0.1)
+2026-08-11 11:52:53  INFO: [T749ff7cb: osmand > 172.18.0.1] HTTP/1.1 400 Bad Request\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:54:06  INFO: [Ted2d8bf5] connected
+2026-08-11 11:54:06  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467613&lon=-67.5147932&timestamp=1786449191&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:54:06  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:54:06  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467613&lon=-67.5147932&timestamp=1786449196&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:54:06  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:54:09  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:53:11, lat: 10.04676, lon: -67.51479, course: 0.0
+2026-08-11 11:54:09  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:53:16, lat: 10.04676, lon: -67.51479, course: 0.0
+2026-08-11 11:54:23  INFO: [T749ff7cb] disconnected
+2026-08-11 11:55:32  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0467607&lon=-67.5147924&timestamp=1786449267&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:55:32  INFO: Automatically registered 1228
+2026-08-11 11:55:32  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:55:32  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0467607&lon=-67.5147924&timestamp=1786449272&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:55:32  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:55:32  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.0467617&lon=-67.5147892&timestamp=1786449277&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:55:32  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:55:33  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1228&lat=10.04678&lon=-67.514735&timestamp=1786449283&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:55:33  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:55:35  INFO: [Ted2d8bf5] id: 1228, time: 2026-08-11 11:54:27, lat: 10.04676, lon: -67.51479, course: 0.0
+2026-08-11 11:55:35  INFO: [Ted2d8bf5] id: 1228, time: 2026-08-11 11:54:32, lat: 10.04676, lon: -67.51479, course: 0.0
+2026-08-11 11:55:35  INFO: [Ted2d8bf5] id: 1228, time: 2026-08-11 11:54:37, lat: 10.04676, lon: -67.51479, course: 0.0
+2026-08-11 11:55:36  INFO: [Ted2d8bf5] id: 1228, time: 2026-08-11 11:54:43, lat: 10.04678, lon: -67.51474, course: 0.0
+2026-08-11 11:56:30  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467616&lon=-67.5147892&timestamp=1786449314&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:56:30  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:56:30  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467616&lon=-67.5147892&timestamp=1786449319&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:56:30  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:56:31  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.046785&lon=-67.5147633&timestamp=1786449325&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:56:31  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:56:31  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.046736&lon=-67.5147226&timestamp=1786449330&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:56:31  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:56:31  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467168&lon=-67.5146584&timestamp=1786449336&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:56:31  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:56:32  INFO: [Ted2d8bf5: osmand < 172.18.0.1] OPTIONS /?id=1717&lat=10.0467219&lon=-67.5146155&timestamp=1786449341&cliente= HTTP/1.1\r\nHost: ramrod-demystify-fled.ngrok-free.dev\r\nUser-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: es-US,es-419;q=0.9,es;q=0.8,en;q=0.7\r\nAccess-Control-Request-Headers: ngrok-skip-browser-warning\r\nAccess-Control-Request-Method: GET\r\nOrigin: https://ornate-starship-4ddf1b.netlify.app\r\nPriority: u=1, i\r\nReferer: https://ornate-starship-4ddf1b.netlify.app/\r\nSec-Fetch-Dest: empty\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Site: cross-site\r\nX-Forwarded-For: 38.183.214.201\r\nX-Forwarded-Host: ramrod-demystify-fled.ngrok-free.dev\r\nX-Forwarded-Proto: https\r\n\r\n
+2026-08-11 11:56:32  INFO: [Ted2d8bf5: osmand > 172.18.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-08-11 11:56:33  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:55:14, lat: 10.04676, lon: -67.51479, course: 0.0
+2026-08-11 11:56:34  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:55:19, lat: 10.04676, lon: -67.51479, course: 0.0
+2026-08-11 11:56:34  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:55:25, lat: 10.04679, lon: -67.51476, course: 0.0
+2026-08-11 11:56:34  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:55:30, lat: 10.04674, lon: -67.51472, course: 0.0
+2026-08-11 11:56:35  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:55:36, lat: 10.04672, lon: -67.51466, course: 0.0
+2026-08-11 11:56:35  INFO: [Ted2d8bf5] id: 1717, time: 2026-08-11 11:55:41, lat: 10.04672, lon: -67.51462, course: 0.0

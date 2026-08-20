@@ -44,11 +44,11 @@
 
     <h2>Control de Ruta</h2>
     
-    <label for="nombreVendedor">ID del Vendedor:</label>
-    <input type="text" id="nombreVendedor" placeholder="Ej: 1228" required>
+    <label for="idVendedor">ID de Rastreo (Código):</label>
+    <input type="text" id="idVendedor" placeholder="Ej: 1228" required>
 
-    <label for="nombreCliente">Nombre del Cliente (Opcional):</label>
-    <input type="text" id="nombreCliente" placeholder="Ej: Distribuidora Centro">
+    <label for="nombreVendedor">Nombre del Vendedor (Obligatorio):</label>
+    <input type="text" id="nombreVendedor" placeholder="Ej: Juan Pérez" required>
 
     <button id="btnIniciar" onclick="iniciarRuta()">Guiar Cliente (Iniciar)</button>
     <button id="btnFinalizar" onclick="finalizarYSincronizar()" disabled>Finalizar y Enviar</button>
@@ -66,9 +66,11 @@
 
         // 1. INICIAR LA RUTA
         function iniciarRuta() {
-            const idVendedor = document.getElementById('nombreVendedor').value;
-            if (!idVendedor) {
-                alert("Por favor, ingresa tu ID de vendedor antes de iniciar.");
+            const idVendedor = document.getElementById('idVendedor').value;
+            const nombreVendedor = document.getElementById('nombreVendedor').value;
+            
+            if (!idVendedor || !nombreVendedor) {
+                alert("Por favor, ingresa tu ID y Nombre antes de iniciar.");
                 return;
             }
 
@@ -80,8 +82,8 @@
             // Cambiar el estado visual de los botones
             document.getElementById('btnIniciar').disabled = true;
             document.getElementById('btnFinalizar').disabled = false;
-            document.getElementById('nombreVendedor').disabled = true;
-            document.getElementById('nombreCliente').disabled = true; // Bloqueamos el cliente también
+            document.getElementById('idVendedor').disabled = true;
+            document.getElementById('nombreVendedor').disabled = true; 
             
             historialRuta = [];
             ultimoTiempoGuardado = 0; // Reiniciamos el reloj al iniciar el viaje
@@ -93,7 +95,7 @@
                     const ahora = Date.now();
                     const milisegundosRequeridos = INTERVALO_SEGUNDOS * 1000;
 
-                    // NUEVO: Solo guardamos el punto si ya pasó el tiempo configurado
+                    // Solo guardamos el punto si ya pasó el tiempo configurado
                     if (ahora - ultimoTiempoGuardado >= milisegundosRequeridos) {
                         const punto = {
                             lat: posicion.coords.latitude,
@@ -101,7 +103,7 @@
                             tiempo: new Date().toISOString()
                         };
                         historialRuta.push(punto);
-                        ultimoTiempoGuardado = ahora; // Actualizamos el reloj
+                        ultimoTiempoGuardado = ahora; 
                         actualizarContador();
                     }
                 },
@@ -121,27 +123,27 @@
             document.getElementById('estadoPuntos').innerText = `Puntos capturados: ${historialRuta.length}`;
         }
 
-        // 3. COMUNICACIÓN CON TRACCAR SERVER (AHORA INCLUYE EL CLIENTE)
+        // 3. COMUNICACIÓN CON TRACCAR SERVER
         async function enviarATraccar(punto, idVendedor) {
             const tiempoUnix = Math.floor(new Date(punto.tiempo).getTime() / 1000);
             
-            // NUEVO: Capturamos el nombre del cliente
-            const nombreCliente = document.getElementById('nombreCliente').value;
-            // Lo codificamos por si tiene espacios (ej: "Distribuidora Centro" -> "Distribuidora%20Centro")
-            const clienteUrl = encodeURIComponent(nombreCliente);
+            // Capturamos el nombre del vendedor
+            const nombreVendedor = document.getElementById('nombreVendedor').value;
+            const nombreUrl = encodeURIComponent(nombreVendedor);
             
-            // NUEVO: Agregamos &cliente= a la URL. (RECUERDA PONER TU LINK DE NGROK)
-            const urlTraccar = `https://ramrod-demystify-fled.ngrok-free.dev/?id=${idVendedor}&lat=${punto.lat}&lon=${punto.lon}&timestamp=${tiempoUnix}&cliente=${clienteUrl}`;
+            // Agregamos &vendedor= a la URL
+            const urlTraccar = `https://fine-cloths-jump.loca.lt/?id=${idVendedor}&lat=${punto.lat}&lon=${punto.lon}&timestamp=${tiempoUnix}&vendedor=${nombreUrl}`;
             
             try {
                 await fetch(urlTraccar, { 
                     method: 'GET',
                     headers: {
-                        'ngrok-skip-browser-warning': 'true'
+                        'ngrok-skip-browser-warning': 'true',
+                        'Bypass-Tunnel-Reminder': 'true'
                     }
                 }); 
             } catch (error) {
-                console.log("Punto enviado correctamente (Falso error de CORS ignorado)");
+                console.log("Punto enviado correctamente (Falso error ignorado)");
             }
         }
 
@@ -167,9 +169,10 @@
                 rastreadorId = null;
             }
 
-            const idVendedor = document.getElementById('nombreVendedor').value;
+            const idVendedor = document.getElementById('idVendedor').value;
             document.getElementById('btnIniciar').disabled = false;
             document.getElementById('btnFinalizar').disabled = true;
+            document.getElementById('idVendedor').disabled = false;
             document.getElementById('nombreVendedor').disabled = false;
 
             if (historialRuta.length === 0) {

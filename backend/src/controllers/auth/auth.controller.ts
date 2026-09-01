@@ -20,10 +20,8 @@ export class AuthController {
                 return res.status(401).json({
                     error: error.message || 'Error de autenticación'
                 });
-
             });
     }
-
 
     getUser = (req: Request, res: Response) => {
 

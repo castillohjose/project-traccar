@@ -3,5 +3,3 @@ docker.sock/
 traccar-data/
 traccar-logs/
 .env
-logs/
-*.exe

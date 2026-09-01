@@ -14,7 +14,7 @@ app.use('/api', AppRoutes.routes)
 
 
 app.listen(envs.PORT, function () {
-    console.log("Servidor express activo")
+    console.log(`Servidor express activo, http://localhost:${envs.PORT}`)
 })
 
 

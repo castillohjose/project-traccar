@@ -8,7 +8,7 @@ export class AuthController {
     constructor(private readonly traccarApiSession: TraccarApiSession) { }
 
     login = (req: Request, res: Response) => {
-        const { email, password } = req.body;
+        const { email, password } = req.validated!.body as { email: string; password: string };
         this.traccarApiSession.session({ email, password })
             .then(data => {
                 if (data.cookie) {

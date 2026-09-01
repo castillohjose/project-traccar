@@ -531,3 +531,41 @@
 2026-09-01 12:29:08  INFO: Started oejs.Server@406808eb{STARTING}[12.1.8,sto=0] @1949ms
 2026-09-01 12:31:35  INFO: login failed from: 172.18.0.1
 2026-09-01 12:31:38  INFO: login failed from: 172.18.0.1
+2026-09-01 13:42:15  INFO: Operating system name: Linux version: 6.18.33.2-microsoft-standard-WSL2 architecture: amd64
+2026-09-01 13:42:15  INFO: Java runtime name: OpenJDK 64-Bit Server VM vendor: Eclipse Adoptium version: 25.0.3+9-LTS
+2026-09-01 13:42:15  INFO: Memory limit heap: 960mb non-heap: 0mb
+2026-09-01 13:42:15  INFO: Character encoding: UTF-8
+2026-09-01 13:42:15  INFO: Version: 6.14.5
+2026-09-01 13:42:15  INFO: Starting server...
+2026-09-01 13:42:15  INFO: HikariPool-1 - Starting...
+2026-09-01 13:42:16  INFO: HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28d79cba
+2026-09-01 13:42:16  INFO: HikariPool-1 - Start completed.
+2026-09-01 13:42:16  INFO: Set default schema name to public
+2026-09-01 13:42:16  INFO: Successfully acquired change log lock
+2026-09-01 13:42:16  INFO: Clearing database change log checksums for database postgresql
+2026-09-01 13:42:16  INFO: Successfully released change log lock
+2026-09-01 13:42:16  INFO: Command execution complete
+2026-09-01 13:42:17  INFO: Reading from public.databasechangelog
+2026-09-01 13:42:17  INFO: Reading from public.databasechangelog
+2026-09-01 13:42:17  INFO: Reading from public.databasechangelog
+2026-09-01 13:42:17  INFO: UPDATE SUMMARY
+2026-09-01 13:42:17  INFO: Run:                          0
+2026-09-01 13:42:17  INFO: Previously run:              33
+2026-09-01 13:42:17  INFO: Filtered out:                 1
+2026-09-01 13:42:17  INFO: -------------------------------
+2026-09-01 13:42:17  INFO: Total change sets:           34
+2026-09-01 13:42:17  INFO: FILTERED CHANGE SETS SUMMARY
+2026-09-01 13:42:17  INFO: DBMS mismatch:                1
+2026-09-01 13:42:17  INFO: Update summary generated
+2026-09-01 13:42:17  INFO: Command execution complete
+2026-09-01 13:42:19  INFO: jetty-12.1.8; built: 2026-04-01T01:09:18.991Z; git: c9cdc9aaa434a3665b8a53b4d1cc3684992da649; jvm 25.0.3+9-LTS
+2026-09-01 13:42:19  INFO: Session workerName=node0
+2026-09-01 13:42:19  INFO: Started oeje10s.ServletContextHandler@5e8f0f98{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@6bf0f70a{STARTED}}
+2026-09-01 13:42:19  INFO: Started oeje10s.ServletContextHandler@5e8f0f98{ROOT,/,b=file:///opt/traccar/web/,a=AVAILABLE,h=oeje10s.SessionHandler@6bf0f70a{STARTED}}
+2026-09-01 13:42:19  INFO: Started oejs.ServerConnector@1e5e3147{HTTP/1.1, (http/1.1)}{0.0.0.0:8082}
+2026-09-01 13:42:19  INFO: Started oejs.Server@3aed692d{STARTING}[12.1.8,sto=0] @791ms
+2026-09-01 14:25:16  INFO: [T560aae5b] connected
+2026-09-01 14:25:16  INFO: [T560aae5b: osmand < 172.20.0.1] POST / HTTP/1.1\r\nAccept: */*\r\nUser-Agent: ktor-client\r\nContent-Type: application/x-www-form-urlencoded; charset=UTF-8\r\nContent-Length: 127\r\nHost: 10.0.0.183:5055\r\nConnection: Keep-Alive\r\nAccept-Encoding: gzip\r\n\r\nid=19707038&lat=10.0444558&lon=-67.5234412&timestamp=1788272813&accuracy=25.996000289916992&altitude=530.0&batt=88&charge=false
+2026-09-01 14:25:16  INFO: [T560aae5b: osmand > 172.20.0.1] HTTP/1.1 200 OK\r\ncontent-length: 0\r\n\r\n
+2026-09-01 14:25:19  INFO: [T560aae5b] id: 19707038, time: 2026-09-01 14:26:53, lat: 10.04446, lon: -67.52344, course: 0.0, accuracy: 26.0
+2026-09-01 14:34:17  INFO: [T560aae5b] disconnected

@@ -82,8 +82,7 @@ compartir una geozona, el creador puede conservar acceso y un administrador pued
 ver más información. Quitar un vínculo no garantiza revocar accesos por otras vías.
 Crear y vincular son operaciones separadas: si falla la segunda, la referencia
 permanece creada. Estas rutas no vinculan geozonas a dispositivos ni configuran
-alertas de entrada/salida. Para vincular dispositivos y consultar permanencias,
-ver [tracking.md](tracking.md).
+alertas de entrada/salida.
 
 El listado acepta all, userId, deviceId, groupId, refresh, limit, offset y keyword.
 Los filtros disponibles dependen de la versión de Traccar instalada.

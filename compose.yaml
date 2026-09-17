@@ -36,5 +36,18 @@ services:
       - ./logs:/opt/traccar/logs
       - ./traccar.xml:/opt/traccar/conf/traccar.xml:ro
 
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3100:3000"
+    depends_on:
+      - traccar
+    environment:
+      - NODE_ENV=production
+      - TRACCAR_API_URL=http://traccar:8082/api
+
 volumes:
   db_data:

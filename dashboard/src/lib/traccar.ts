@@ -1,6 +1,6 @@
-const TRACCAR_API_URL = "http://localhost:8082/api";
-const TRACCAR_API_USER = "admin@greenpack.com";
-const TRACCAR_API_PASS = "admin";
+const TRACCAR_API_URL = process.env.TRACCAR_API_URL || "http://localhost:8082/api";
+const TRACCAR_API_USER = process.env.TRACCAR_API_USER || "admin@greenpack.com";
+const TRACCAR_API_PASS = process.env.TRACCAR_API_PASS || "admin";
 
 export async function fetchTraccar(endpoint: string, options: RequestInit = {}) {
   const url = `${TRACCAR_API_URL}${endpoint}`;

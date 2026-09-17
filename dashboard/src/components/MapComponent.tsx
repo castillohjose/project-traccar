@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
+import React, { useEffect, useState, useRef, Fragment } from "react";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, Circle, LayersControl } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -37,6 +37,7 @@ interface MapProps {
   positions: Position[];
   history: Position[];
   selectedDeviceId: number | null;
+  clients?: any[];
   getDeviceName: (id: number) => string;
   playbackIndex?: number;
   onMarkerClick?: (id: number) => void;
@@ -51,7 +52,7 @@ function MapPanController({ center }: { center: [number, number] }) {
   return null;
 }
 
-export default function MapComponent({ positions, history, selectedDeviceId, getDeviceName, playbackIndex = 0, onMarkerClick }: MapProps) {
+export default function MapComponent({ positions, history, selectedDeviceId, getDeviceName, playbackIndex = 0, onMarkerClick, clients = [] }: MapProps) {
   let center: [number, number] = [10.4806, -66.9036]; // Default Caracas
   let panCenter: [number, number] | null = null;
   
@@ -82,10 +83,26 @@ export default function MapComponent({ positions, history, selectedDeviceId, get
         scrollWheelZoom={true} 
         style={{ height: "100%", width: "100%", zIndex: 0 }}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <LayersControl position="topright">
+          <LayersControl.BaseLayer checked name="OpenStreetMap">
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Google Calles">
+            <TileLayer
+              attribution='&copy; Google'
+              url="http://mt0.google.com/vt/lyrs=m&hl=es&x={x}&y={y}&z={z}"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Google Híbrido (Satélite)">
+            <TileLayer
+              attribution='&copy; Google'
+              url="http://mt0.google.com/vt/lyrs=y&hl=es&x={x}&y={y}&z={z}"
+            />
+          </LayersControl.BaseLayer>
+        </LayersControl>
         
         {/* Controlador para mover la cámara dinámicamente si estamos reproduciendo una ruta */}
         {panCenter && <MapPanController center={panCenter} />}
@@ -94,6 +111,49 @@ export default function MapComponent({ positions, history, selectedDeviceId, get
         {polylineCoords.length > 0 && (
           <Polyline positions={polylineCoords} color="#3b82f6" weight={5} opacity={0.6} />
         )}
+
+        {/* Dibujar Clientes (Geocercas) */}
+        {clients.map(client => {
+          if (client.area && client.area.startsWith("CIRCLE")) {
+            const match = client.area.match(/CIRCLE \(([^ ]+) ([^,]+), ([^)]+)\)/);
+            if (match) {
+              const lat = parseFloat(match[1]);
+              const lng = parseFloat(match[2]);
+              const rad = parseFloat(match[3]);
+              
+              // Define custom icon for client if they have an image
+              const clientIcon = client.attributes?.imageUrl 
+                ? L.divIcon({
+                    html: `<img src="${client.attributes.imageUrl}" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #3b82f6; object-fit: cover;" />`,
+                    className: '',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                  })
+                : L.divIcon({
+                    html: `<div style="width: 28px; height: 28px; border-radius: 50%; background-color: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #6b7280; box-shadow: 0 1px 2px rgba(0,0,0,0.1); border: 2px solid white;">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                           </div>`,
+                    className: '',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                  });
+
+              return (
+                <React.Fragment key={`client-${client.id}`}>
+                  <Circle center={[lat, lng]} radius={rad} pathOptions={{ color: '#2563eb', fillColor: '#3b82f6', fillOpacity: 0.15 }} />
+                  <Marker position={[lat, lng]} icon={clientIcon}>
+                    <Popup>
+                      <strong>{client.name}</strong><br/>
+                      {client.description && <span>{client.description}<br/></span>}
+                      <span className="text-xs text-gray-500">Radio: {rad}m</span>
+                    </Popup>
+                  </Marker>
+                </React.Fragment>
+              );
+            }
+          }
+          return null;
+        })}
 
         {/* Marcador especial móvil para la repetición de la ruta */}
         {selectedDeviceId && history.length > 0 && playbackIndex < history.length && (
@@ -130,7 +190,7 @@ export default function MapComponent({ positions, history, selectedDeviceId, get
               <Popup>
                 <strong>{getDeviceName(pos.deviceId)}</strong><br />
                 Velocidad: {(pos.speed * 1.852).toFixed(1)} km/h<br />
-                Última act: {new Date(pos.fixtime || new Date()).toLocaleTimeString()}
+                Última act: {new Date(pos.fixTime || new Date()).toLocaleTimeString()}
               </Popup>
             </Marker>
           )

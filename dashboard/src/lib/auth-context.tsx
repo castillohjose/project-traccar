@@ -48,7 +48,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!isLoading) {
-      if (!user && pathname !== '/login') {
+      // Definimos rutas que son de acceso público sin login
+      const isPublicRoute = pathname === '/login' || pathname.startsWith('/mapa-movil') || pathname.startsWith('/reportes-movil');
+
+      if (!user && !isPublicRoute) {
         router.push('/login');
       } else if (user && pathname === '/login') {
         router.push('/');

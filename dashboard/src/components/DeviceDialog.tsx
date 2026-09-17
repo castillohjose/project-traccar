@@ -12,6 +12,7 @@ interface Device {
   uniqueId: string;
   status: string;
   lastUpdate: string;
+  attributes?: any;
 }
 
 interface DeviceDialogProps {
@@ -24,6 +25,7 @@ interface DeviceDialogProps {
 export function DeviceDialog({ open, onOpenChange, device, onSaved }: DeviceDialogProps) {
   const [name, setName] = useState(device?.name || "");
   const [uniqueId, setUniqueId] = useState(device?.uniqueId || "");
+  const [workHours, setWorkHours] = useState(device?.attributes?.workHours || "");
   const [loading, setLoading] = useState(false);
 
   // Update state if device prop changes
@@ -38,8 +40,8 @@ export function DeviceDialog({ open, onOpenChange, device, onSaved }: DeviceDial
       const method = device ? "PUT" : "POST";
       
       const payload = device 
-        ? { ...device, name, uniqueId } 
-        : { name, uniqueId, groupId: 1 }; // Asignar al Grupo 1 por defecto
+        ? { ...device, name, uniqueId, attributes: { ...device.attributes, workHours } } 
+        : { name, uniqueId, groupId: 1, attributes: { workHours } }; // Asignar al Grupo 1 por defecto
 
       const res = await fetch(url, {
         method,
@@ -79,14 +81,17 @@ export function DeviceDialog({ open, onOpenChange, device, onSaved }: DeviceDial
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="uniqueId" className="text-right">ID Rastreo</Label>
-            <Input 
-              id="uniqueId" 
-              value={uniqueId} 
-              onChange={e => setUniqueId(e.target.value)} 
-              className="col-span-3" 
-              placeholder="ID único o número de teléfono"
-            />
+            <Label htmlFor="uniqueId" className="text-right">ID Vendedor</Label>
+            <Input id="uniqueId" value={uniqueId} onChange={e => setUniqueId(e.target.value)} className="col-span-3" placeholder="ID único o número de teléfono" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="workHours" className="text-right">
+              Horario Laboral
+            </Label>
+            <Input id="workHours" placeholder="Ej: 08:00 - 18:00" value={workHours} onChange={e => setWorkHours(e.target.value)} className="col-span-3" />
+            <p className="col-span-4 text-xs text-gray-500 text-right mt-1">
+              * El límite horario será procesado por la App móvil del teléfono.
+            </p>
           </div>
         </div>
         <DialogFooter>

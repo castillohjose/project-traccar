@@ -9,4 +9,11 @@
 
     <!-- Asigna los dispositivos nuevos automáticamente al Grupo 1 -->
     <entry key='database.registerUnknown.defaultGroupId'>1</entry>
+
+    <!-- Filtros de precisión para evitar saltos (Efecto Rebote) -->
+    <entry key='filter.enable'>true</entry>
+    <entry key='filter.invalid'>true</entry>
+    <entry key='filter.zero'>true</entry>
+    <entry key='filter.accuracy'>50</entry>
+    <entry key='filter.maxSpeed'>160</entry>
 </properties>

@@ -5,10 +5,16 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Search, Navigation, Play, Pause, X, Clock, Calendar as CalendarIcon, User, SkipBack } from "lucide-react";
+import { ArrowLeft, Search, Navigation, Play, Pause, X, Clock, Calendar as CalendarIcon, User, SkipBack, MapPin, Battery } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { ClientData } from "@/components/ClientDialog";
 
 // Dynamic import with no SSR because Leaflet uses window object
 const MapComponent = dynamic(() => import("@/components/MapComponent"), {
@@ -31,9 +37,19 @@ interface Position {
   longitude: number;
   speed: number;
   fixTime: string;
+  attributes?: any;
+}
+
+export interface Visit {
+  client: ClientData;
+  entryTime: string;
+  exitTime: string | null;
+  entryIndex: number;
 }
 
 export default function MapaPage() {
+  const [clients, setClients] = useState<ClientData[]>([]);
+  const [visits, setVisits] = useState<Visit[]>([]);
   const [devices, setDevices] = useState<Device[]>([]);
   const [positions, setPositions] = useState<Position[]>([]);
   const [search, setSearch] = useState("");
@@ -41,6 +57,8 @@ export default function MapaPage() {
   // States for device selection and floating panel
   const [selectedDeviceId, setSelectedDeviceId] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
+  const [activeDates, setActiveDates] = useState<string[]>([]);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   
   // Playback states
   const [history, setHistory] = useState<Position[]>([]);
@@ -59,6 +77,11 @@ export default function MapaPage() {
       .then(res => res.json())
       .then(data => { if (Array.isArray(data)) setPositions(data); })
       .catch(console.error);
+
+    fetch('/api/rutas')
+      .then(res => res.json())
+      .then(data => { if (Array.isArray(data)) setClients(data); })
+      .catch(console.error);
       
     // Polling for live positions
     const interval = setInterval(() => {
@@ -71,6 +94,94 @@ export default function MapaPage() {
     }, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  // Compute visits based on history and clients
+  useEffect(() => {
+    if (history.length === 0 || clients.length === 0) {
+      setVisits([]);
+      return;
+    }
+
+    const computedVisits: Visit[] = [];
+    let currentVisit: Visit | null = null;
+
+    const getDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+      const R = 6371e3;
+      const dLat = (lat2-lat1) * Math.PI/180;
+      const dLon = (lon2-lon1) * Math.PI/180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+      return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+    };
+
+    for (let index = 0; index < history.length; index++) {
+      const pos = history[index];
+      // Find if pos is inside any client geofence
+      let insideClient: ClientData | null = null;
+      for (const client of clients) {
+        if (client.area && client.area.startsWith("CIRCLE")) {
+          const match = client.area.match(/CIRCLE \(([^ ]+) ([^,]+), ([^)]+)\)/);
+          if (match) {
+            const cLat = parseFloat(match[1]);
+            const cLng = parseFloat(match[2]);
+            const cRad = parseFloat(match[3]);
+            if (getDistance(pos.latitude, pos.longitude, cLat, cLng) <= cRad) {
+              insideClient = client;
+              break; // assume one geofence at a time
+            }
+          }
+        }
+      }
+
+      if (insideClient) {
+        if (!currentVisit || currentVisit.client.id !== insideClient.id) {
+          // If we were in another visit, close it
+          if (currentVisit) {
+            currentVisit.exitTime = pos.fixTime;
+            computedVisits.push(currentVisit);
+          }
+          // Start new visit
+          currentVisit = {
+            client: insideClient,
+            entryTime: pos.fixTime,
+            exitTime: null,
+            entryIndex: index
+          };
+        }
+      } else {
+        // If we were in a visit and stepped outside, close it
+        if (currentVisit) {
+          currentVisit.exitTime = pos.fixTime;
+          computedVisits.push(currentVisit);
+          currentVisit = null;
+        }
+      }
+    }
+
+    // Close the last visit if it was ongoing at the end of history
+    if (currentVisit) {
+      const lastPos = history[history.length - 1];
+      (currentVisit as Visit).exitTime = lastPos.fixTime;
+      computedVisits.push(currentVisit as Visit);
+    }
+
+    setVisits(computedVisits);
+  }, [history, clients]);
+
+  // Fetch Active Dates for the selected device
+  useEffect(() => {
+    if (!selectedDeviceId) {
+      setActiveDates([]);
+      return;
+    }
+    fetch(`/api/active-dates?deviceId=${selectedDeviceId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) setActiveDates(data);
+      })
+      .catch(console.error);
+  }, [selectedDeviceId]);
 
   // Fetch History when a device or date is selected
   useEffect(() => {
@@ -150,6 +261,37 @@ export default function MapaPage() {
 
   const currentPlaybackPosition = history.length > 0 && playbackIndex < history.length ? history[playbackIndex] : null;
 
+  // Calcular consumo de batería del historial
+  let totalConsumedBattery: number | null = null;
+  let startBatteryLevel: number | null = null;
+  let endBatteryLevel: number | null = null;
+
+  if (history.length > 0) {
+    const firstPosWithBattery = history.find(p => p.attributes?.batteryLevel !== undefined);
+    const lastPosWithBattery = history.slice().reverse().find(p => p.attributes?.batteryLevel !== undefined);
+    
+    if (firstPosWithBattery) startBatteryLevel = firstPosWithBattery.attributes.batteryLevel;
+    if (lastPosWithBattery) endBatteryLevel = lastPosWithBattery.attributes.batteryLevel;
+
+    let consumed = 0;
+    let prevBattery = firstPosWithBattery ? firstPosWithBattery.attributes.batteryLevel : null;
+    
+    for (let i = 0; i < history.length; i++) {
+      const currentBattery = history[i].attributes?.batteryLevel;
+      if (currentBattery !== undefined && prevBattery !== null) {
+        if (currentBattery < prevBattery) {
+          consumed += (prevBattery - currentBattery);
+        }
+        prevBattery = currentBattery;
+      } else if (currentBattery !== undefined) {
+        prevBattery = currentBattery;
+      }
+    }
+    if (startBatteryLevel !== null && endBatteryLevel !== null) {
+      totalConsumedBattery = consumed;
+    }
+  }
+
   // Haversine formula para calcular distancia entre coordenadas (km)
   const calculateSpeedKmH = (currentIndex: number, historyArray: Position[]) => {
     // Si viene velocidad del GPS > 0, usar esa (Traccar la da en nudos)
@@ -184,6 +326,10 @@ export default function MapaPage() {
   };
 
   const currentSpeed = currentPlaybackPosition ? calculateSpeedKmH(playbackIndex, history) : 0;
+
+  // Parseamos selectedDate a un objeto Date real para el calendario
+  const [year, month, day] = selectedDate.split('-').map(Number);
+  const selectedDateObj = new Date(year, month - 1, day);
 
   return (
     <div className="flex h-screen w-full bg-gray-50 overflow-hidden relative">
@@ -255,6 +401,7 @@ export default function MapaPage() {
           positions={positions} 
           history={history} 
           selectedDeviceId={selectedDeviceId}
+          clients={clients}
           getDeviceName={getDeviceName}
           playbackIndex={playbackIndex}
           onMarkerClick={(id) => setSelectedDeviceId(id)}
@@ -306,16 +453,48 @@ export default function MapaPage() {
                     <label className="text-gray-500 flex items-center gap-1 mb-1">
                       <CalendarIcon className="h-4 w-4" /> Fecha a consultar
                     </label>
-                    <Input 
-                      type="date" 
-                      value={selectedDate}
-                      onChange={(e) => setSelectedDate(e.target.value)}
-                      className="mb-3"
-                    />
                     
-                    <div className="text-center text-gray-600 bg-gray-50 p-2 rounded">
+                    <div className="bg-white rounded-md border shadow-sm mb-3 flex justify-center">
+                      <Calendar
+                        mode="single"
+                        selected={selectedDateObj}
+                        onSelect={(date) => {
+                          if (date) {
+                            const offset = date.getTimezoneOffset();
+                            const localDate = new Date(date.getTime() - (offset*60*1000));
+                            setSelectedDate(localDate.toISOString().split('T')[0]);
+                          }
+                        }}
+                        locale={es}
+                        modifiers={{
+                          active: activeDates.map(dateStr => {
+                            const [y, m, d] = dateStr.split('-').map(Number);
+                            return new Date(y, m - 1, d);
+                          })
+                        }}
+                        modifiersClassNames={{
+                          active: "bg-blue-100 text-blue-900 font-bold underline decoration-blue-500 underline-offset-4"
+                        }}
+                      />
+                    </div>
+                    
+                    <div className="text-center text-gray-600 bg-gray-50 p-2 rounded mb-2">
                       Puntos registrados: <strong>{history.length}</strong>
                     </div>
+
+                    {totalConsumedBattery !== null && startBatteryLevel !== null && endBatteryLevel !== null && (
+                      <div className="bg-blue-50 border border-blue-100 p-3 rounded text-center">
+                        <div className="text-xs uppercase text-blue-800 font-bold mb-1 flex items-center justify-center gap-1">
+                          <Battery className="h-3 w-3" /> Consumo de Batería
+                        </div>
+                        <p className="text-lg font-medium text-blue-600">
+                          {totalConsumedBattery}% consumido
+                        </p>
+                        <p className="text-xs text-blue-500 mt-1">
+                          Inicio: {startBatteryLevel}% → Final: {endBatteryLevel}%
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -415,8 +594,71 @@ export default function MapaPage() {
             )}
           </div>
         )}
+
+        {/* --- PANEL LATERAL DERECHO (TIMELINE DE VISITAS) --- */}
+        {selectedDevice && (
+          <div className="absolute top-4 right-4 z-10 w-80 bg-white/95 backdrop-blur rounded-xl shadow-2xl flex flex-col max-h-[calc(100vh-2rem)] overflow-hidden border border-gray-200 animate-in slide-in-from-right-8">
+            <div className="p-4 border-b bg-gray-100/80">
+              <h2 className="font-bold text-gray-800 text-lg flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-blue-600" />
+                Resumen de Ruta
+              </h2>
+              <p className="text-xs text-gray-500 mt-1">Fecha: {format(selectedDateObj || new Date(), "dd/MM/yyyy")}</p>
+            </div>
+            
+            <ScrollArea className="flex-1 p-0">
+              {visits.length === 0 ? (
+                <div className="p-8 text-center text-gray-500 text-sm">
+                  No se registraron visitas a clientes en este día.
+                </div>
+              ) : (
+                <div className="flex flex-col relative p-4">
+                  {/* Línea vertical de tiempo */}
+                  <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gray-200 z-0"></div>
+                  
+                  {visits.map((visit, i) => (
+                    <div 
+                      key={i} 
+                      className="relative z-10 flex gap-4 mb-6 cursor-pointer group hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                      onClick={() => {
+                        setPlaybackIndex(visit.entryIndex);
+                        setPlaybackState('paused');
+                        // Aquí idealmente volaríamos al mapa, lo cual haremos pasando un prop o usando un estado global, 
+                        // pero por ahora el cambio de playbackIndex forzará al mapa a centrarse en el vendedor que estará en ese cliente.
+                      }}
+                    >
+                      <div className="flex-shrink-0 mt-1">
+                        {visit.client.attributes?.imageUrl ? (
+                          <img src={visit.client.attributes.imageUrl} className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" alt="client" />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-blue-100 border-2 border-white shadow-sm flex items-center justify-center text-blue-600 font-bold">
+                            {visit.client.name.charAt(0).toUpperCase()}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-gray-800 leading-tight group-hover:text-blue-600 transition-colors">{visit.client.name}</h4>
+                        {visit.client.description && (
+                          <p className="text-xs text-gray-500 mt-0.5 truncate">{visit.client.description}</p>
+                        )}
+                        <div className="mt-2 pl-3 border-l-2 border-gray-300 flex flex-col gap-0.5 text-xs text-gray-600 font-medium">
+                          <span className="flex items-center gap-1">
+                            Llegada: {new Date(visit.entryTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            Salida: {visit.exitTime ? new Date(visit.exitTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '...'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </ScrollArea>
+          </div>
+        )}
+
       </main>
-      
     </div>
   );
 }

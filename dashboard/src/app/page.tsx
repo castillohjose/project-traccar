@@ -71,7 +71,7 @@ export default function DashboardPage() {
           </Link>
 
           <Link href="/reportes">
-            <Card className="hover:border-purple-500 cursor-pointer transition-colors">
+            <Card className="hover:border-purple-500 cursor-pointer transition-colors h-full">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Reportes</CardTitle>
                 <FileText className="h-4 w-4 text-purple-500" />
@@ -82,6 +82,49 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </Link>
+
+          {user?.role !== 'normal' && !user?.readonly && (
+            <>
+              <Link href="/backups">
+                <Card className="hover:border-red-500 cursor-pointer transition-colors h-full">
+                  <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium">Respaldos</CardTitle>
+                    <FileText className="h-4 w-4 text-red-500" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">Base de Datos</div>
+                    <p className="text-xs text-muted-foreground">Importar y exportar</p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/grupos">
+                <Card className="hover:border-indigo-500 cursor-pointer transition-colors h-full">
+                  <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium">Carpetas</CardTitle>
+                    <MapPin className="h-4 w-4 text-indigo-500" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">Jerarquía</div>
+                    <p className="text-xs text-muted-foreground">Grupos y Asignaciones</p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/usuarios">
+                <Card className="hover:border-teal-500 cursor-pointer transition-colors h-full">
+                  <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium">Usuarios</CardTitle>
+                    <Users className="h-4 w-4 text-teal-500" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">Permisos</div>
+                    <p className="text-xs text-muted-foreground">Control de accesos</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </>
+          )}
         </div>
       </main>
     </div>

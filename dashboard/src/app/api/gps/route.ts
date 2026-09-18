@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchTraccar } from '@/lib/traccar';
+import { fetchTraccar, ensureGroupExists } from '@/lib/traccar';
 
 async function forwardToTraccar(request: NextRequest) {
   try {
@@ -29,16 +29,21 @@ async function forwardToTraccar(request: NextRequest) {
     // 1. AUTO-REGISTRO: Si viene un ID, verificamos si existe en Traccar
     if (deviceId) {
       try {
-        const existingDevices = await fetchTraccar(`/devices?uniqueId=${deviceId}`);
+        const existingDevices = await fetchTraccar(`/devices?uniqueId=${deviceId}`, { systemRequest: true });
         if (!existingDevices || existingDevices.length === 0) {
           console.log(`[PROXY] Auto-registrando nuevo dispositivo: ${deviceId}`);
+          
+          // Aseguramos que el grupo "Vendedores" exista dinámicamente
+          const groupId = await ensureGroupExists("Vendedores", true) || 1;
+
           await fetchTraccar('/devices', {
             method: 'POST',
             body: JSON.stringify({
               name: `Vendedor Nuevo (${deviceId})`,
               uniqueId: deviceId,
-              groupId: 1
-            })
+              groupId: groupId
+            }),
+            systemRequest: true
           });
         }
       } catch (checkError) {

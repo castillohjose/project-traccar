@@ -10,20 +10,15 @@ export interface User {
   name: string;
   email: string;
   role: Role;
+  readonly?: boolean;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, pass: string) => boolean;
+  login: (email: string, pass: string) => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
 }
-
-const mockUsers: User[] = [
-  { id: '1', name: 'Administrador Principal', email: 'admin@greenpack.com', role: 'admin' },
-  { id: '2', name: 'Supervisor Ventas', email: 'super@greenpack.com', role: 'supervisor' },
-  { id: '3', name: 'Usuario Observador', email: 'user@greenpack.com', role: 'normal' },
-];
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -34,16 +29,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Check localStorage for session
-    const storedUser = localStorage.getItem('dashboard_user');
-    if (storedUser) {
+    // Check real session via Traccar API
+    const checkSession = async () => {
       try {
-        setUser(JSON.parse(storedUser));
+        const res = await fetch('/api/auth/me');
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data.user);
+        } else {
+          setUser(null);
+        }
       } catch (e) {
-        localStorage.removeItem('dashboard_user');
+        setUser(null);
+      } finally {
+        setIsLoading(false);
       }
-    }
-    setIsLoading(false);
+    };
+    checkSession();
   }, []);
 
   useEffect(() => {
@@ -59,21 +61,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [user, isLoading, pathname, router]);
 
-  const login = (email: string, pass: string) => {
-    // For demo purposes, password is just the role or 'admin' / 'super' / 'user'
-    const found = mockUsers.find(u => u.email === email);
-    // Extremely basic mock auth
-    if (found && (pass === found.role || pass === found.email.split('@')[0])) {
-      setUser(found);
-      localStorage.setItem('dashboard_user', JSON.stringify(found));
-      return true;
+  const login = async (email: string, pass: string) => {
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password: pass })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setUser(data.user);
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false;
     }
-    return false;
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
     setUser(null);
-    localStorage.removeItem('dashboard_user');
     router.push('/login');
   };
 

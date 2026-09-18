@@ -48,6 +48,10 @@ services:
     environment:
       - NODE_ENV=production
       - TRACCAR_API_URL=http://traccar:8082/api
+      - TRACCAR_API_USER=admin@greenpack.com
+      - TRACCAR_API_PASS=admin
+    volumes:
+      - ./backups_profundos:/app/backups
 
 volumes:
   db_data:

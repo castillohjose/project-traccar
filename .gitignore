@@ -5,3 +5,7 @@ traccar-logs/
 .env
 logs/
 *.exe
+
+*.sql
+*.txt
+backups_profundos/

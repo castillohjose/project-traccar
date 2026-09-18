@@ -3,7 +3,7 @@ import { fetchTraccar } from '@/lib/traccar';
 
 export async function GET() {
   try {
-    const devices = await fetchTraccar('/devices');
+    const devices = await fetchTraccar('/devices?all=true');
     return NextResponse.json(devices);
   } catch (error) {
     console.error(error);

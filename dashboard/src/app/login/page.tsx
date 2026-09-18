@@ -13,13 +13,18 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (login(email, password)) {
+    setIsLoading(true);
+    const success = await login(email, password);
+    if (success) {
       setError("");
     } else {
-      setError("Credenciales incorrectas.");
+      setError("Credenciales incorrectas o servidor no disponible.");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -31,7 +36,7 @@ export default function LoginPage() {
           </div>
           <CardTitle className="text-2xl">Tracking MNS</CardTitle>
           <CardDescription>
-            Inicia sesión en tu cuenta
+            Inicia sesin en tu cuenta
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -50,25 +55,18 @@ export default function LoginPage() {
               <Input 
                 id="password" 
                 type="password" 
-                placeholder="Contraseña"
+                placeholder="Contrasea"
                 required 
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
             </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
-            
-            <div className="text-xs text-gray-500 mt-2">
-              <p>Demo accounts (pwd = role):</p>
-              <ul className="list-disc pl-4 mt-1">
-                <li>admin@greenpack.com / admin</li>
-                <li>super@greenpack.com / super</li>
-                <li>user@greenpack.com / user</li>
-              </ul>
-            </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">Entrar al Panel</Button>
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? 'Conectando...' : 'Entrar al Panel'}
+            </Button>
           </CardFooter>
         </form>
       </Card>

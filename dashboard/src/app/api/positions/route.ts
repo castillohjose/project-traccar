@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     
     // Otherwise fetch latest positions (requires Accept: application/json or it might send websocket stream but API defaults to JSON usually, let's just use /positions)
     // Actually Traccar /positions without params gives latest positions for all devices.
-    const latestPositions = await fetchTraccar('/positions');
+    const latestPositions = await fetchTraccar('/positions?all=true');
     return NextResponse.json(latestPositions);
 
   } catch (error) {
